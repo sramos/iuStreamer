@@ -1,0 +1,30 @@
+  <% @videos.each do |video| %>
+    <li class="video">
+      <% if video.live %>
+
+        <div id='mediaspace<%= video.id %>'><%= video.title %></div>
+
+        <script type='text/javascript'>
+          jwplayer('mediaspace<%= video.id %>').setup({
+            'flashplayer': '/jwplayer/player.swf',
+            'file': 'live',
+            'streamer': 'rtmp://localhost/directo/<%= video.channel.name %>',
+            'controlbar': 'bottom',
+            'width': '320',
+            'height': '240'
+          });
+        </script>
+
+      <% else %>
+        <img src="/images/colour-bars.png" alt="Video thumbnail" class="avatar"/>
+      <% end %>
+      <%= video.title %>
+    </li>
+  <% end %>
+  <div id="mas_videos" class="left">
+    <% if @videos.total_pages > @videos.current_page %>
+      <div id="spinner" style="display:none;"></div>
+      <%= link_to_remote "Mas Vídeos", :url => { :controller => 'channels', :action => 'mas_videos', :page => @videos.current_page+1, :id => id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    <% end %>
+  </div>
+

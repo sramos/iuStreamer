@@ -1,0 +1,49 @@
+<html>
+
+
+<head>
+    <title>iuStreamer: Are you Streamer?</title>
+
+    <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+    <%= stylesheet_link_tag 'iustreamer', :media => "all" %>
+    <%= javascript_include_tag 'prototype' %>
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'scriptaculous' %>
+    <%= javascript_include_tag 'builder' %>
+    <%= javascript_include_tag 'effects' %>
+    <%= javascript_include_tag 'iustreamer' %>
+    <script type='text/javascript' src='/jwplayer/jwplayer.js'></script>
+
+    <META NAME="copyright" CONTENT="Copyright (C) 2011 Santiago Ramos">
+    <META NAME="generator" CONTENT="iuStreamer - Version <%= ENV['APP_VERSION'] %>">
+
+</head>
+
+<body>
+
+<!-- NUEVA CABECERA -->
+
+<div id="cabecera">
+  <a href="/" id="logo" class="left">
+    <img class="left" alt="Are you Streamer?" src="/images/logo.png">&nbsp;Are You Streamer?
+  </a>
+
+  <div class="right">
+  <% if current_channel %>  
+    Hola, <%= link_to current_channel.name, :controller => :channels, :action => current_channel.name %> | <%= link_to "Logout", logout_path %>
+  <% else %>  
+    <%= link_to "Register", new_channel_path %> | <%= link_to "Log in", login_path %>
+  <% end %> 
+  </div>
+</div>
+
+<% if flash[:notice] %>
+  <div id="mensaje"><%= flash[:notice] %></div>
+<% end %>
+
+<div id="cuerpo">
+  <%= yield %> 
+</div>
+
+</body>
+</html>

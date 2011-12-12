@@ -1,0 +1,156 @@
+
+body {
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: Verdana, Arial, Courier new;
+  font-size: 15px;
+  margin: 0;
+  min-width: 800px;
+  text-align: center;
+}
+
+/*********************************
+*     CABECERA DE LA PAGINA      *
+*********************************/
+
+#cabecera {
+  position: fixed;
+  min-width: 500px;
+  height: 55px !important;
+  width: 100%;
+  text-align: left;
+  color: #04adda;
+  background-color: #444;
+}
+
+#cabecera a, #cabecera a:link, #cabecera a:visited {
+  /*color:#fff;*/
+  color:#04adda;
+  text-decoration:none;
+}
+
+#cabecera a:hover {
+  color:#ddd;
+}
+
+#logo {
+  padding-top: 3px;
+  padding-left: 5px;
+  line-height: 45px;
+  font-size: 35px;
+}
+
+/*********************************
+*         CAJA DE AVISOS         *
+*********************************/
+
+#mensaje {
+  height:10px;
+
+  right: 5px;
+  position: absolute;
+  top: 20px;
+  z-index: 5000;
+
+  background:#fff url(/images/ok.png) no-repeat scroll 4px 4px;
+
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 12px;
+  padding-left: 30px;
+  padding-right: 12px;
+  -moz-border-radius-bottomleft: 7px;
+  -moz-border-radius-bottomright: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 4px
+}
+
+/*********************************
+*       CUERPO DE LA PAGINA      *
+*********************************/
+
+#cuerpo {
+  clear:both;
+  padding-top: 75px;
+  padding-bottom: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color:#fff;
+  text-align:left;
+}
+
+#cuerpo a, #cuerpo a:link, #cuerpo a:visited {
+  /*color:#fff;*/
+  color:#000;
+  text-decoration:none;
+}
+
+#cuerpo a:hover {
+  color:#04adda;
+}
+
+#cabecera_canal {
+  clear: both;
+  min-height: 45px;
+  padding-bottom: 30px;
+}
+
+.canal {
+  clear: both;
+  min-height: 80px;
+  width: 100%;
+  padding:10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 1px 1px 4px #333333;
+  -moz-border-radius-bottomleft: 7px;
+  -moz-border-radius-bottomright: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 4px
+}
+
+.canal_titulo {
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.canal_detalles {
+  float: left;
+  padding-top: 10px;
+  font-size: 10px;
+}
+
+.avatar {
+  float: left;
+  padding-right: 10px;
+}
+
+.video {
+  width: 200px; 
+  padding: 2px;
+  margin-right: 10px;
+  text-align: center;
+  border-width: 2px;
+  border-style: ridge;
+}
+
+.right {
+  float: right;
+  text-align: right;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.left {
+  float: left;
+  text-align: left;
+  margin-left: 5px
+  margin-right: 5px;
+}
+
+#spinner, .spinner {
+  padding: 2em;
+  background: transparent url(/images/spinner.gif) 50% 0 no-repeat;
+}

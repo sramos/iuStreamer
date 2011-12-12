@@ -1,0 +1,7 @@
+<% form_for @channel_session do |form| %>  
+ <%= form.error_messages %><br />
+ <%= form.label :name, "Name" %> <%= form.text_field :name %><br />
+ <%= form.label :password, "Password" %> <%= form.password_field :password %><br />
+ <%= form.submit "Submit" %>
+<% end %>
+

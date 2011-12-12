@@ -1,0 +1,12 @@
+
+<div class="canal">
+  <%= render :partial => "cabecera", :locals => { :channel => @channel } %>
+  <br />
+  Estamos en la pagina del canal:&nbsp;
+  <%= @channel.name %>
+
+  <ul>
+  <%= render :partial => "videos", :locals => { :id => @channel.id } %>
+  </ul>
+
+</div>

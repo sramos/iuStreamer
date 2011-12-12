@@ -1,0 +1,7 @@
+
+<% @channels.each do |channel| %>
+  <div class="canal">
+    <%= render :partial => "channels/cabecera", :locals => { :channel => channel } %>
+  </div>
+<% end %>
+
