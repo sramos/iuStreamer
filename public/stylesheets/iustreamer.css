@@ -129,7 +129,8 @@ body {
 }
 
 .canal_descripcion {
-  height: 2em;
+  height: 3em;
+  max-height: 3em;
   overflow: auto;
 }
 
@@ -153,6 +154,7 @@ body {
   float: left;
   margin-left: 20px;
   width: 690px;
+  padding: 10px;
 }
 
 .video {
@@ -178,6 +180,7 @@ body {
   text-align: left;
   clear: right;
   font-size: 16px;
+  font-weight: bold;
   float: left;
   height: 3em;
   width: 450px;
@@ -189,8 +192,15 @@ body {
 }
 
 #mas_videos {
-  padding: 5px;
-  margin: 15px;
+}
+
+#mas_videos a, #mas_videos a:link, #mas_videos a:visited {
+  color: #fff;
+  text-decoration:none;
+}
+
+#mas_videos a:hover {
+  color: #000;
 }
 
 #video_play_wrapper, #video_play_header, #video_play_footer {
@@ -200,13 +210,16 @@ body {
   margin-top: 10px;
 }
 
+#video_play_wrapper {
+  border-width: 5px;
+  border-color: #04adda;
+}
+
 #video_play_header {
   text-align: center;
   font-size: 18px;
 }
 
-#video_play_footer {
-}
 
 /*********************************
 *          OTROS ESTILOS         *
@@ -230,8 +243,8 @@ body {
   text-align: center;
   font-weight: bold;
   clear: both;
-  padding: 5px;
-  margin: 15px;
+  padding: 2px;
+  margin-top: 15px; 
 }
 
 .right {

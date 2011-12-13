@@ -10,7 +10,7 @@
   <% end %>
   <br/>
 
-  <% if @video_live %>
+  <% if @video_live && @video_live.public%>
         <div id='video_play_header' class='resaltado'>¡<%= @channel.name.capitalize %> está en directo!</div>
         <div id='video_play'>Título: <%= @video_live.title %></div>
         <% if @channel == current_channel %>
@@ -18,6 +18,9 @@
         <% else %>
           <div id='video_play_name'><%= @video_live.title %></div>
         <% end %>
+        <div class="video-details">Emitido: <%= @video_live.created_at %></div>
+        <div class="video-details">Reproducciones: <%= @video_live.views %></div>
+        <div class="video-details">Público: <%= @video_live.public ? "Sí" : "No" %></div>
         <script type='text/javascript'>
           jwplayer('video_play').setup({
             'flashplayer': '/jwplayer/player.swf',
@@ -31,7 +34,6 @@
             'autostart': 'true'
           });
         </script>
-        <br/>
   <% end %>
 </div>
 

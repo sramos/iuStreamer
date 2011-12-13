@@ -25,7 +25,10 @@
             'autostart': 'true'
           });
   </script>
+  <div class="video-details">Emitido: <%= @video.created_at %></div>
+  <div class="video-details">Reproducciones: <%= @video.views + 1 %></div>
+  <div class="video-details">Público: <%= @video.public ? "Sí" : "No" %></div>
   <div id="mas_videos" class="resaltado">
-    <%= link_to "- Más Vídeos de " + @video.channel.name.capitalize + " -", :controller => 'channels', :action => 'show', :id => @video.channel.name %>
+    <%= link_to "- Más Vídeos del Canal " + @video.channel.name.capitalize + " -", :controller => 'channels', :action => 'show', :id => @video.channel.name %>
   </div>
 </div>

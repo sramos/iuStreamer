@@ -6,14 +6,16 @@
       <div class="video-data">
         <div class="video-title">
           <div class="normal">Título:</div>
-          <% if @channel == current_channel %>
+          <% if video.channel == current_channel %>
             <div id='video_title_<%= video.id %>' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
             <div id="video_edit_title_<%= video.id %>" class="editable" style="display:none;"><%= video.title %></div>
           <% else %>
-            <div id='video_title_<%= video.id %>'><%= video.title || "N/A" %></div>
+            <div id='video_title_<%= video.id %>'><%= video.title || "Sin título" %></div>
           <% end %>
         </div>
         <div class="video-details">Emitido: <%= video.created_at %></div>
+        <div class="video-details">Reproducciones: <%= video.views %></div>
+        <div class="video-details">Público: <%= video.public ? "Sí" : "No" %></div>
       </div>
     </div>
   <% end %>

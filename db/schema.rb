@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(:version => 20111208005329) do
     t.string   "title"
     t.string   "filename"
     t.boolean  "live"
+    t.integer  "viewers",    :default => 0
     t.integer  "views",      :default => 0
+    t.boolean  "public",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

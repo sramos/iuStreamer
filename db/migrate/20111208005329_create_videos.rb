@@ -7,6 +7,7 @@ class CreateVideos < ActiveRecord::Migration
       t.boolean :live
       t.integer :viewers, :default => 0
       t.integer :views, :default => 0
+      t.boolean :public, :default => true
       t.timestamps
     end
   end

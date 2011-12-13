@@ -17,8 +17,13 @@ class ChannelsController < ApplicationController
       @channel.views += 1
       @channel.save
       # Saca los datos de video online y videos emitidos
+      condiciones = ["NOT live"]
+      if current_channel != @channel
+        puts "------------> Queremos mirar solo los publicos"
+        condiciones += ["public"]
+      end
       @video_live = @channel.videos.first( :conditions => { :live => true })
-      @videos = @channel.videos.paginate( :order => 'created_at DESC', :conditions => ["NOT live"], :page => 1, :per_page => 2 )
+      @videos = @channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => 1, :per_page => 3 )
     else
       redirect_to(:controller => :home)
     end
@@ -26,7 +31,12 @@ class ChannelsController < ApplicationController
 
   def mas_videos
     channel = Channel.find_by_id(params[:id])
-    @videos = channel.videos.paginate( :order => 'created_at DESC', :conditions => ["NOT live"], :page => params[:page], :per_page => 2 )
+    condiciones = ["NOT live"]
+    if current_channel != channel
+        puts "------------> Queremos mirar solo los publicos"
+      condiciones += ["public"]
+    end
+    @videos = channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => params[:page], :per_page => 3 )
     render :update do |page|
       page.replace 'mas_videos', :partial => 'videos', :locals => { :id => params[:id] }
     end
