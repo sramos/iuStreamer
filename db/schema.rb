@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111208005329) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.string   "stream_token"
+    t.integer  "views",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20111208005329) do
     t.string   "title"
     t.string   "filename"
     t.boolean  "live"
+    t.integer  "views",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,12 +1,42 @@
 
-<div class="canal">
+<div class="caja_canal">
   <%= render :partial => "cabecera", :locals => { :channel => @channel } %>
   <br />
-  Estamos en la pagina del canal:&nbsp;
-  <%= @channel.name %>
+  <% if current_channel == @channel %>
+    <div class="right">
+      <%= link_to "Editar Perfil", edit_channel_path(:current) %> | <%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @channel.name %>
+    </div>
+    <br/>
+  <% end %>
+  <br/>
 
-  <ul>
+  <% if @video_live %>
+        <div id='video_live_header' class='resaltado'>¡<%= @channel.name.capitalize %> está en directo!</div>
+        <div id='video_live'>Título: <%= @video_live.title %></div>
+        <% if @channel == current_channel %>
+          <div id='video_live_name' class='editable'><%= @video_live.title || "Pulsa aquí para cambiar el nombre" %></div>
+        <% else %>
+          <div id='video_live_name'><%= @video_live.title %></div>
+        <% end %>
+        <script type='text/javascript'>
+          jwplayer('video_live').setup({
+            'flashplayer': '/jwplayer/player.swf',
+            'file': 'live',
+            'streamer': 'rtmp://localhost/directo/<%= @channel.name %>',
+            'controlbar': 'bottom',
+            'width': '320',
+            'height': '240',
+            'icons': 'false',
+            'dock': 'false',
+            'autostart': 'true'
+          });
+        </script>
+        <br/>
+  <% end %>
+</div>
+
+<div class="caja_videos">
+  <div class="canal_titulo resaltado">Otros Vídeos emitidos</div>
   <%= render :partial => "videos", :locals => { :id => @channel.id } %>
-  </ul>
 
 </div>

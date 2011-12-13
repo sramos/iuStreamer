@@ -89,16 +89,18 @@ body {
   color:#04adda;
 }
 
+/*********************************
+*        ESTILOS DE CANAL        *
+*********************************/
+
 #cabecera_canal {
   clear: both;
   min-height: 45px;
   padding-bottom: 30px;
 }
 
-.canal {
-  clear: both;
-  min-height: 80px;
-  width: 100%;
+.canal, .caja_canal {
+  min-height: 100px;
   padding:10px;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -109,11 +111,26 @@ body {
   border-radius: 4px
 }
 
+.caja_canal {
+  float: left;
+  width: 350px;
+}
+
+.canal {
+  width: 100%;
+  clear: both;
+}
+
 .canal_titulo {
   font-size: 20px;
   font-weight: bold;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.canal_descripcion {
+  height: 2em;
+  overflow: auto;
 }
 
 .canal_detalles {
@@ -127,13 +144,93 @@ body {
   padding-right: 10px;
 }
 
+
+/*********************************
+*        ESTILOS DE VIDEO        *
+*********************************/
+
+.caja_videos {
+  float: left;
+  margin-left: 20px;
+}
+
 .video {
-  width: 200px; 
-  padding: 2px;
+  padding: 15px;
+  height: 150px;
+}
+
+.video-thumbnail {
+  float: left;
+  width: 200px;
   margin-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+
+.video-data {
+  float: left; 
+}
+
+.video-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  clear: right;
+  font-size: 16px;
+  float: left;
+  height: 3em;
+  width: 450px;
+  max-height: 3em;
+}
+
+.video-details {
+  text-align: left;
+}
+
+#mas_videos {
+  padding: 5px;
+  margin: 15px;
+}
+
+#video_live_wrapper, #video_live_header, #video_live_footer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#video_live_header {
   text-align: center;
-  border-width: 2px;
-  border-style: ridge;
+  font-size: 18px;
+}
+
+#video_live_footer {
+}
+
+/*********************************
+*          OTROS ESTILOS         *
+*********************************/
+
+.normal {
+  float: left;
+  width: 60px;
+}
+
+.editable {
+  background-color: #f8f8f8;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.resaltado {
+  /*background-color: #e8f8ff;*/
+  background-color: #04adda;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  clear: both;
+  padding: 5px;
+  margin: 15px;
 }
 
 .right {

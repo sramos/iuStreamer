@@ -1,30 +1,26 @@
   <% @videos.each do |video| %>
-    <li class="video">
-      <% if video.live %>
-
-        <div id='mediaspace<%= video.id %>'><%= video.title %></div>
-
-        <script type='text/javascript'>
-          jwplayer('mediaspace<%= video.id %>').setup({
-            'flashplayer': '/jwplayer/player.swf',
-            'file': 'live',
-            'streamer': 'rtmp://localhost/directo/<%= video.channel.name %>',
-            'controlbar': 'bottom',
-            'width': '320',
-            'height': '240'
-          });
-        </script>
-
-      <% else %>
-        <img src="/images/colour-bars.png" alt="Video thumbnail" class="avatar"/>
-      <% end %>
-      <%= video.title %>
-    </li>
+    <div class="video">
+      <div class="video-thumbnail">
+        <img src="/images/colour-bars.png" alt="Video thumbnail" />
+      </div>
+      <div class="video-data">
+        <div class="video-title">
+          <div class="normal">Título:</div>
+          <% if @channel == current_channel %>
+            <div id='video_title_<%= video.id %>' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
+            <div id="video_edit_title_<%= video.id %>" class="editable" style="display:none;"><%= video.title %></div>
+          <% else %>
+            <div id='video_title_<%= video.id %>'><%= video.title || "N/A" %></div>
+          <% end %>
+        </div>
+        <div class="video-details">Emitido: <%= video.created_at %></div>
+      </div>
+    </div>
   <% end %>
-  <div id="mas_videos" class="left">
-    <% if @videos.total_pages > @videos.current_page %>
+  <% if @videos.total_pages > @videos.current_page %>
+    <div id="mas_videos" class="resaltado">
       <div id="spinner" style="display:none;"></div>
-      <%= link_to_remote "Mas Vídeos", :url => { :controller => 'channels', :action => 'mas_videos', :page => @videos.current_page+1, :id => id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
-    <% end %>
-  </div>
+      <%= link_to_remote "- Más Vídeos -", :url => { :controller => 'channels', :action => 'mas_videos', :page => @videos.current_page+1, :id => id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    </div>
+  <% end %>
 

@@ -8,6 +8,7 @@ class CreateChannels < ActiveRecord::Migration
       t.string :password_salt  
       t.string :persistence_token  
       t.string :stream_token
+      t.integer :views, :default => 0
       t.timestamps  
     end  
   end   
