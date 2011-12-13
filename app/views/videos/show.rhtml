@@ -1,0 +1,31 @@
+
+<div class="caja_canal">
+  <%= render :partial => "channels/cabecera", :locals => { :channel => @video.channel } %>
+  <br />
+  <% if current_channel == @video.channel %>
+    <div class="right">
+      <%= link_to "Editar Perfil", edit_channel_path(:current) %> | <%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @video.channel.name %>
+    </div>
+    <br/>
+  <% end %>
+  <br/>
+</div>
+
+<div class="caja_videos">
+  <div class="canal_titulo resaltado"><%= @video.title || "Sin Título" %></div>
+  <div id='video_play'>Título: <%= @video.title %></div>
+  <script type='text/javascript'>
+          jwplayer('video_play').setup({
+            'flashplayer': '/jwplayer/player.swf',
+            'file': '<%= @video.filename %>.flv',
+            'streamer': 'rtmp://localhost/directo',
+            'controlbar': 'bottom',
+            'width': '470',
+            'height': '290',
+            'autostart': 'true'
+          });
+  </script>
+  <div id="mas_videos" class="resaltado">
+    <%= link_to "- Más Vídeos de " + @video.channel.name.capitalize + " -", :controller => 'channels', :action => 'show', :id => @video.channel.name %>
+  </div>
+</div>

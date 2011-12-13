@@ -1,7 +1,7 @@
   <% @videos.each do |video| %>
     <div class="video">
       <div class="video-thumbnail">
-        <img src="/images/colour-bars.png" alt="Video thumbnail" />
+        <%= link_to '<img src="/images/colour-bars.png" alt="Video thumbnail" />', :controller => :videos, :action => :show, :id => video.id %>
       </div>
       <div class="video-data">
         <div class="video-title">

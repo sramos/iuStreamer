@@ -11,15 +11,15 @@
   <br/>
 
   <% if @video_live %>
-        <div id='video_live_header' class='resaltado'>¡<%= @channel.name.capitalize %> está en directo!</div>
-        <div id='video_live'>Título: <%= @video_live.title %></div>
+        <div id='video_play_header' class='resaltado'>¡<%= @channel.name.capitalize %> está en directo!</div>
+        <div id='video_play'>Título: <%= @video_live.title %></div>
         <% if @channel == current_channel %>
-          <div id='video_live_name' class='editable'><%= @video_live.title || "Pulsa aquí para cambiar el nombre" %></div>
+          <div id='video_play_name' class='editable'><%= @video_live.title || "Pulsa aquí para cambiar el nombre" %></div>
         <% else %>
-          <div id='video_live_name'><%= @video_live.title %></div>
+          <div id='video_play_name'><%= @video_live.title %></div>
         <% end %>
         <script type='text/javascript'>
-          jwplayer('video_live').setup({
+          jwplayer('video_play').setup({
             'flashplayer': '/jwplayer/player.swf',
             'file': 'live',
             'streamer': 'rtmp://localhost/directo/<%= @channel.name %>',
@@ -36,7 +36,7 @@
 </div>
 
 <div class="caja_videos">
-  <div class="canal_titulo resaltado">Otros Vídeos emitidos</div>
+  <div class="canal_titulo resaltado">Vídeos emitidos</div>
   <%= render :partial => "videos", :locals => { :id => @channel.id } %>
 
 </div>

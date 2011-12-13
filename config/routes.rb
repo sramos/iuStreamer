@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'channel_sessions', :action => 'destroy'  
   map.resources :channel_sessions
   map.resources :channels
+  map.resources :videos
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
