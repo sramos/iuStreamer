@@ -1,24 +1,7 @@
   <% @videos.each do |video| %>
-    <div class="video" id="video_<%= video.id %>">
-      <div class="video-thumbnail">
-        <%= link_to '<img src="/images/colour-bars.png" alt="Video thumbnail" />', :controller => :videos, :action => :show, :id => video.id %>
-      </div>
-      <div class="video-data">
-        <div class="video-title">
-          <div class="normal">Título:</div>
-          <% if video.channel == current_channel %>
-            <div id='video_title_<%= video.id %>' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
-            <div id="video_edit_title_<%= video.id %>" class="editable" style="display:none;"><%= video.title %></div>
-          <% else %>
-            <div id='video_title_<%= video.id %>'><%= video.title || "Sin título" %></div>
-          <% end %>
-        </div>
-
-        <%= render :partial => "videos/detalles", :locals => { :video => video } %>
-
-      </div>
-    </div>
+    <%= render :partial => "videos/video", :locals => {:video => video} %>
   <% end %>
+
   <% if @videos.total_pages > @videos.current_page %>
     <div id="mas_videos" class="resaltado">
       <div id="spinner" class="spinner" style="display:none;"></div>

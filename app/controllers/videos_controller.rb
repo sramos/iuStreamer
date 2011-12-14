@@ -5,6 +5,15 @@ class VideosController < ApplicationController
     redirect_to :controller => :home unless @video && current_channel == @video.channel
   end
 
+  def cambia_publico
+    video = Video.find_by_id(params[:id])
+    video.public = params[:public]
+    video.save
+    render :update do |page|
+      page.replace params[:update], :partial => 'video', :locals => {:video => video}
+    end
+  end
+
   def delete
     video = Video.find_by_id(params[:id])
     video.delete
