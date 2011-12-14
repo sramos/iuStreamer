@@ -1,11 +1,9 @@
 
 <div class="caja_canal">
   <%= render :partial => "cabecera", :locals => { :channel => @channel } %>
-  <br />
   <% if current_channel == @channel %>
-    <div class="right">
-      <%= link_to "Editar Perfil", edit_channel_path(:current) %> | <%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @channel.name %>
-    </div>
+    <div class="boton"><%= link_to "Editar Perfil", edit_channel_path(:current) %></div>
+    <div class="boton"><%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @channel.name %></div>
     <br/>
   <% end %>
   <br/>
@@ -18,9 +16,10 @@
         <% else %>
           <div id='video_play_name'><%= @video_live.title %></div>
         <% end %>
-        <div class="video-details">Emitido: <%= @video_live.created_at %></div>
-        <div class="video-details">Reproducciones: <%= @video_live.views %></div>
-        <div class="video-details">Público: <%= @video_live.public ? "Sí" : "No" %></div>
+
+        <%= render :partial => "videos/detalles", :locals => { :video => @video_live } %>
+        <br /><br />
+
         <script type='text/javascript'>
           jwplayer('video_play').setup({
             'flashplayer': '/jwplayer/player.swf',
@@ -39,6 +38,6 @@
 
 <div class="caja_videos">
   <div class="canal_titulo resaltado">Vídeos emitidos</div>
+  <br />
   <%= render :partial => "videos", :locals => { :id => @channel.id } %>
-
 </div>

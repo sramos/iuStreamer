@@ -1,5 +1,5 @@
   <% @videos.each do |video| %>
-    <div class="video">
+    <div class="video" id="video_<%= video.id %>">
       <div class="video-thumbnail">
         <%= link_to '<img src="/images/colour-bars.png" alt="Video thumbnail" />', :controller => :videos, :action => :show, :id => video.id %>
       </div>
@@ -13,16 +13,16 @@
             <div id='video_title_<%= video.id %>'><%= video.title || "Sin título" %></div>
           <% end %>
         </div>
-        <div class="video-details">Emitido: <%= video.created_at %></div>
-        <div class="video-details">Reproducciones: <%= video.views %></div>
-        <div class="video-details">Público: <%= video.public ? "Sí" : "No" %></div>
+
+        <%= render :partial => "videos/detalles", :locals => { :video => video } %>
+
       </div>
     </div>
   <% end %>
   <% if @videos.total_pages > @videos.current_page %>
     <div id="mas_videos" class="resaltado">
-      <div id="spinner" style="display:none;"></div>
-      <%= link_to_remote "- Más Vídeos -", :url => { :controller => 'channels', :action => 'mas_videos', :page => @videos.current_page+1, :id => id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+      <div id="spinner" class="spinner" style="display:none;"></div>
+      <%= link_to_remote "- Más Vídeos -", :url => { :controller => :channels, :action => :mas_videos, :page => @videos.current_page+1, :id => id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
     </div>
   <% end %>
 

@@ -6,6 +6,7 @@ class CreateVideos < ActiveRecord::Migration
       t.string :filename
       t.boolean :live
       t.integer :viewers, :default => 0
+      t.integer :max_viewers, :default => 0
       t.integer :views, :default => 0
       t.boolean :public, :default => true
       t.timestamps

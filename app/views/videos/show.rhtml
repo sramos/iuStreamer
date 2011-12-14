@@ -3,9 +3,8 @@
   <%= render :partial => "channels/cabecera", :locals => { :channel => @video.channel } %>
   <br />
   <% if current_channel == @video.channel %>
-    <div class="right">
-      <%= link_to "Editar Perfil", edit_channel_path(:current) %> | <%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @video.channel.name %>
-    </div>
+    <div class="boton"><%= link_to "Editar Perfil", edit_channel_path(:current) %></div>
+    <div class="boton"><%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @video.channel.name %></div>
     <br/>
   <% end %>
   <br/>
@@ -25,9 +24,11 @@
             'autostart': 'true'
           });
   </script>
-  <div class="video-details">Emitido: <%= @video.created_at %></div>
-  <div class="video-details">Reproducciones: <%= @video.views + 1 %></div>
-  <div class="video-details">Público: <%= @video.public ? "Sí" : "No" %></div>
+
+  <%= render :partial => "videos/detalles", :locals => { :video => @video } %>
+
+  <br />
+
   <div id="mas_videos" class="resaltado">
     <%= link_to "- Más Vídeos del Canal " + @video.channel.name.capitalize + " -", :controller => 'channels', :action => 'show', :id => @video.channel.name %>
   </div>

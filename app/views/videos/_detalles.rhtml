@@ -1,0 +1,18 @@
+
+<div class="video-details">Emitido: <%= video.created_at %></div>
+<div class="video-details">Reproducciones: <%= video.views %> | Ahora: <%= video.viewers %> | Max.Simultaneos: <%= video.max_viewers %></div>
+<div class="video-details">Público: <%= video.public ? "Sí" : "No" %></div>
+<% if current_channel == video.channel %>
+  <div class="video-details">
+    <div id="spinner_<%= video.id %>" class="spinner left" style="display:none"></div>
+    <% if !video.live %>
+      <div class="boton">
+        <%= link_to_remote "Borrar", :url => { :controller => :videos, :action => :delete, :id => video.id, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner_#{video.id.to_s}')", :complete => "Element.hide('spinner_#{video.id.to_s}')" %>
+      </div>
+    <% end %>
+    <div class="boton">
+      <%= link_to_remote "Hacer " + (video.public ? "Privado" : "Público"), :url => { :controller => :videos, :action => :publico, :id => video.id, :publico => !video.public }, :loading => "Element.show('spinner_#{video.id.to_s}')", :complete => "Element.hide('spinner_#{video.id.to_s}')" %>
+    </div>
+  </div>
+<% end %>
+

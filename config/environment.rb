@@ -40,6 +40,7 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
   ENV['RTMP_HOST'] = ENV['RTMP_HOST'] || "localhost"
+  ENV['VIDEO_BASE_PATH'] = ENV['VIDEO_BASE_PATH'] || "/tmp/webstream"
 
   #
   # Obtiene la version para mostrarla en el header de la pagina
