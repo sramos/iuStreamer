@@ -26,7 +26,7 @@
           jwplayer('video_play').setup({
             'flashplayer': '/jwplayer/player.swf',
             'file': 'live',
-            'streamer': 'rtmp://localhost/directo/<%= @channel.name %>',
+            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo/<%= @channel.name %>',
             'controlbar': 'bottom',
             'width': '320',
             'height': '240',
