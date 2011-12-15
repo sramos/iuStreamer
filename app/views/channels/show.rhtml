@@ -38,8 +38,4 @@
   <% end %>
 </div>
 
-<div class="caja_videos">
-  <div class="canal_titulo resaltado">Vídeos emitidos</div>
-  <br />
-  <%= render :partial => "videos", :locals => { :id => @channel.id } %>
-</div>
+<%= render :partial => 'listado_videos' %>

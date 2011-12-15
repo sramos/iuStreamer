@@ -6,22 +6,20 @@ class ChannelsController < ApplicationController
   require 'will_paginate'
 
   before_filter :own_channel, :only => [:show_xml, :edit, :update]
+  before_filter :listado_inicial_videos, :only => [:show, :listado_videos]
 
   def new  
     @channel = Channel.new  
   end  
 
   def show
-    @channel = Channel.find_by_name(params[:id])
     if @channel
       # Incrementa el contador de visitas
       @channel.views += 1
       @channel.save
-      # Saca los datos de video online y videos emitidos
-      condiciones = "NOT live" + ( current_channel != @channel ? " AND public" : "" )
+      # Saca los datos de video online
       condiciones_live = "live" + ( current_channel != @channel ? " AND public" : "" )
       @video_live = @channel.videos.first( :conditions => condiciones_live )
-      @videos = @channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => 1, :per_page => 3 )
     else
       redirect_to(:controller => :home)
     end
@@ -33,6 +31,12 @@ class ChannelsController < ApplicationController
     @videos = channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => params[:page], :per_page => 3 )
     render :update do |page|
       page.replace 'mas_videos', :partial => 'videos', :locals => { :id => params[:id] }
+    end
+  end
+
+  def listado_videos
+    render :update do |page|
+      page.replace 'caja_videos', :partial => 'listado_videos', :locals => { :id => params[:id] }
     end
   end
 
@@ -79,6 +83,15 @@ class ChannelsController < ApplicationController
    def own_channel
      @channel = current_channel
      redirect_to(:controller => :home) unless @channel
+   end
+
+   def listado_inicial_videos
+    @channel = Channel.find_by_name(params[:id])
+    if @channel
+      # Saca los datos de videos emitidos
+      condiciones = "NOT live" + ( current_channel != @channel ? " AND public" : "" )
+      @videos = @channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => 1, :per_page => 3 )
+    end
    end
 
 end

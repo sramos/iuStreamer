@@ -14,6 +14,13 @@ class VideosController < ApplicationController
     end
   end
 
+  def ver_video
+    @video = Video.find_by_id(params[:id])
+    render :update do |page|
+      page.replace 'caja_videos', :partial => 'ver_video'
+    end
+  end
+
   def delete
     video = Video.find_by_id(params[:id])
     video.delete

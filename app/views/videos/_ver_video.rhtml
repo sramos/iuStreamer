@@ -1,0 +1,24 @@
+
+<div id="caja_videos" class="caja_videos">
+  <div class="canal_titulo resaltado"><%= @video.title || "Sin Título" %></div>
+  <div id='video_play'>Título: <%= @video.title %></div>
+  <script type='text/javascript'>
+          jwplayer('video_play').setup({
+            'flashplayer': '/jwplayer/player.swf',
+            'file': '<%= @video.filename %>.flv',
+            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo',
+            'controlbar': 'bottom',
+            'width': '470',
+            'height': '290',
+            'autostart': 'true'
+          });
+  </script>
+
+  <%= render :partial => "videos/detalles", :locals => { :video => @video } %>
+
+  <br />
+
+  <div id="mas_videos" class="resaltado">
+    <%= link_to_remote '- Más Vídeos del Canal ' + @video.channel.name.capitalize + " -", :url => { :controller => :channels, :action => :listado_videos, :id => @video.channel.name }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+  </div>
+</div>
