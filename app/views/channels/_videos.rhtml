@@ -6,6 +6,7 @@
     <div id="mas_videos" class="resaltado">
       <%= link_to_remote "- Más Vídeos -", :url => { :controller => :channels, :action => :mas_videos, :page => @videos.current_page+1, :id => id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
     </div>
+  <% elsif @videos.size == 0 %>
+    <div id="mas_videos" class="resaltado">Aún no hay videos emitidos</div> 
   <% end %>
 
-  <div id="mas_videos" class="resaltado">Aún no hay videos emitidos</div>
