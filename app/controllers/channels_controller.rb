@@ -14,9 +14,11 @@ class ChannelsController < ApplicationController
 
   def show
     if @channel
-      # Incrementa el contador de visitas
-      @channel.views += 1
-      @channel.save
+      # Incrementa el contador de visitas si no es el propio usuario
+      if current_channel != @channel
+        @channel.views += 1
+        @channel.save
+      end
       # Saca los datos de video online
       condiciones_live = "live" + ( current_channel != @channel ? " AND public" : "" )
       @video_live = @channel.videos.first( :conditions => condiciones_live )
