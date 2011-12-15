@@ -1,0 +1,17 @@
+
+<div class="caja_canal">
+  <div class="canal_titulo resaltado">Conéctate a iuStreamer!</div>
+  <div class="form">
+    <% form_for ChannelSession.new do |form| %>  
+      <%= form.error_messages %><br />
+      <div class="form-line right"><%= form.label :name, "Canal: ", :class => "left" %> <%= form.text_field :name, :class => "left" %></div>
+      <div class="form-line right"><%= form.label :password, "Password: ", :class => "left" %> <%= form.password_field :password, :class => "left" %></div>
+      <div class="form-line right"><%= form.submit "Conectar", :class => "right" %></div>
+    <% end %>
+  </div>
+  <div class="resaltado">Si no tienes cuenta,
+    <%= link_to_remote "regístrate aquí", :url => { :controller => :home, :action => :register }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+  </div>
+  <br />
+</div>
+

@@ -5,13 +5,12 @@
 
 <% if current_channel == video.channel %>
   <div class="video-details">
-    <div id="spinner_<%= video.id %>" class="spinner left" style="display:none"></div>
     <% if !video.live %>
       <div class="boton">
-        <%= link_to_remote "Borrar", :url => { :controller => :videos, :action => :delete, :id => video.id, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner_#{video.id.to_s}')", :complete => "Element.hide('spinner_#{video.id.to_s}')" %>
+        <%= link_to_remote "Borrar", :url => { :controller => :videos, :action => :delete, :id => video.id, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
       </div>
       <div class="boton">
-        <%= link_to_remote "Hacer " + (video.public ? "Privado" : "Público"), :url => { :controller => :videos, :action => :cambia_publico, :id => video.id, :public => !video.public, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner_#{video.id.to_s}')", :complete => "Element.hide('spinner_#{video.id.to_s}')" %>
+        <%= link_to_remote "Hacer " + (video.public ? "Privado" : "Público"), :url => { :controller => :videos, :action => :cambia_publico, :id => video.id, :public => !video.public, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
       </div>
     <% end %>
   </div>

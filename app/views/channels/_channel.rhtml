@@ -1,9 +1,14 @@
-<% form_for @channel do |form| %>  
- <%= form.error_messages %><br />
- <%= form.label :name, "Nombre" %> <%= form.text_field :name %><br />
- <%= form.label :description, "Descricion" %> <%= form.text_field :description %><br />
- <%= form.label :email, "Email" %> <%= form.text_field :email %><br />
- <%= form.label :password, "Password" %> <%= form.password_field :password %><br />
- <%= form.label :password_confirmation, "Repita Password" %> <%= form.password_field :password_confirmation %><br />
- <%= form.submit "Submit" %><br />
-<% end %> 
+
+<div class="form">
+  <% form_for @channel do |form| %>  
+    <%= form.error_messages %><br />
+    <% unless @channel.id %>
+      <div class="form-line right"><%= form.label :name, "Nombre:", :class => "left" %> <%= form.text_field :name, :class => "left" %></div>
+      <div class="form-line right"><%= form.label :description, "Tema:", :class => "left" %> <%= form.text_field :description, :class => "left" %></div>
+    <% end %>
+    <div class="form-line right"><%= form.label :email, "Email:", :class => "left" %> <%= form.text_field :email, :class => "left" %></div>
+    <div class="form-line right"><%= form.label :password, "Password:", :class => "left" %> <%= form.password_field :password, :class => "left" %></div>
+    <div class="form-line right"><%= form.label :password_confirmation, "Repita:", :class => "left" %> <%= form.password_field :password_confirmation, :class => "left" %></div>
+    <div class="form-line right"><%= form.submit "Enviar", :class => "right" %></div>
+  <% end %> 
+</div>

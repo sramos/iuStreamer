@@ -1,7 +1,6 @@
 class ChannelSessionsController < ApplicationController
 
  def new  
-   @channel_session = ChannelSession.new  
  end  
  
  def create  

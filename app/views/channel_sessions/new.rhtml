@@ -1,7 +1,10 @@
-<% form_for @channel_session do |form| %>  
- <%= form.error_messages %><br />
- <%= form.label :name, "Name" %> <%= form.text_field :name %><br />
- <%= form.label :password, "Password" %> <%= form.password_field :password %><br />
- <%= form.submit "Submit" %>
-<% end %>
+
+<div id="inicio_izquierda">
+  <p>Aqui viene la parrafada sobre que te conectes y empeces a emitir... pero hasta que no esté rellenamos con unos minutos musicales</p>
+  <object width="640" height="480"><param name="movie" value="http://www.youtube.com/v/QYteNaLlLB4?version=3&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/QYteNaLlLB4?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="640" height="480" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+</div>
+
+<div id="inicio_derecha">
+  <%= render :partial => "home/login" %>
+</div>
 

@@ -4,7 +4,9 @@
   <% if current_channel == @channel %>
     <div class="boton"><%= link_to "Editar Perfil", edit_channel_path(:current) %></div>
     <div class="boton"><%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @channel.name %></div>
+    <div class="boton"><%= link_to_remote "Editar Mi Perfil", :url => {:controller => :channels, :action => :editar, :update => "edicion_canal"}, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %></div>
     <br/>
+    <div id="edicion_canal"></div>
   <% end %>
   <br/>
 

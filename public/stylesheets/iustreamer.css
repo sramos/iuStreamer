@@ -7,6 +7,7 @@ body {
   margin: 0;
   min-width: 800px;
   text-align: center;
+  height: 100%;
 }
 
 /*********************************
@@ -77,15 +78,25 @@ body {
   padding-right: 50px;
   background-color:#fff;
   text-align:left;
+  overflow: auto;
 }
 
 #cuerpo a, #cuerpo a:link, #cuerpo a:visited {
-  color: #fff;
+  color: #eee;
   text-decoration:none;
 }
 
 #cuerpo a:hover {
   color: #000;
+}
+
+#inicio_izquierda {
+  float:left;
+  width: 780px;
+}
+
+#inicio_derecha {
+  float:right;
 }
 
 /*********************************
@@ -125,8 +136,9 @@ body {
 }
 
 .canal {
-  width: 100%;
-  clear: both;
+  width: 350px;
+  float: left;
+  margin-right: 20px;
 }
 
 .canal_titulo {
@@ -273,7 +285,25 @@ body {
   margin-right: 5px;
 }
 
-#spinner, .spinner {
-  padding: 2em;
-  background: transparent url(/images/spinner.gif) 50% 0 no-repeat;
+.form {
+  overflow: auto;
+  clear: both;
 }
+
+.form-line {
+  clear: both;
+  height: 2em;
+  line-height: 2em;
+}
+
+#spinner {
+  /*padding: 3em;*/
+  width: 70px;
+  height: 70px;
+  background: transparent url(/images/loading.gif) 100% 0 no-repeat;
+  position: fixed;
+  top: 50%;
+  left: 200px;
+  z-index: 999;
+}
+

@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
 
+  # Para el calculo del token de canal
   require 'digest/md5'
   # Libreria para paginado
   require 'will_paginate'
@@ -17,12 +18,9 @@ class ChannelsController < ApplicationController
       @channel.views += 1
       @channel.save
       # Saca los datos de video online y videos emitidos
-      condiciones = ["NOT live"]
-      if current_channel != @channel
-        puts "------------> Queremos mirar solo los publicos"
-        condiciones += ["public"]
-      end
-      @video_live = @channel.videos.first( :conditions => { :live => true })
+      condiciones = "NOT live" + ( current_channel != @channel ? " AND public" : "" )
+      condiciones_live = "live" + ( current_channel != @channel ? " AND public" : "" )
+      @video_live = @channel.videos.first( :conditions => condiciones_live )
       @videos = @channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => 1, :per_page => 3 )
     else
       redirect_to(:controller => :home)
@@ -31,11 +29,7 @@ class ChannelsController < ApplicationController
 
   def mas_videos
     channel = Channel.find_by_id(params[:id])
-    condiciones = ["NOT live"]
-    if current_channel != channel
-        puts "------------> Queremos mirar solo los publicos"
-      condiciones += ["public"]
-    end
+    condiciones = "NOT live" + ( current_channel != @channel ? " AND public" : "" )
     @videos = channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => params[:page], :per_page => 3 )
     render :update do |page|
       page.replace 'mas_videos', :partial => 'videos', :locals => { :id => params[:id] }
@@ -61,6 +55,16 @@ class ChannelsController < ApplicationController
 
   def edit  
   end  
+
+  def editar
+    @channel = current_channel
+    if @channel
+      render :update do |page|
+        page.replace_html params[:update], :partial => 'channel'
+      end
+    else
+    end
+  end
       
   def update  
     if @channel.update_attributes(params[:channel])  
