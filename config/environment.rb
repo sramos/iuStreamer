@@ -41,6 +41,7 @@ Rails::Initializer.run do |config|
 
   ENV['RTMP_HOST'] = ENV['RTMP_HOST'] || "localhost"
   ENV['VIDEO_BASE_PATH'] = ENV['VIDEO_BASE_PATH'] || "/tmp/webstream"
+  config.action_mailer.default_url_options = {:host => "localhost"}
 
   #
   # Obtiene la version para mostrarla en el header de la pagina

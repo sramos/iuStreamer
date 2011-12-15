@@ -1,0 +1,18 @@
+<div id="inicio_izquierda">
+</div>
+
+<div id="inicio_derecha">
+  <div class="caja_canal">
+    <div class="canal_titulo resaltado">Cambio de Clave</div>
+    <div class="form">
+      <% form_for @channel, :url => password_reset_path, :method => :put do |form| %>
+        <%= form.error_messages %><br />
+        <div class="form-line right"><%= form.label :password, "Password: ", :class => "left" %> <%= form.password_field :password, :class => "left" %></div>
+        <div class="form-line right"><%= form.label :password_confirmation, "Confirma: ", :class => "left" %> <%= form.password_field :password_confirmation, :class => "left" %></div>
+        <div class="form-line right"><%= form.submit "Cambiar", :class => "right" %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

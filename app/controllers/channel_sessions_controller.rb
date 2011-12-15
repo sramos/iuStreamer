@@ -11,7 +11,7 @@ class ChannelSessionsController < ApplicationController
      #@user_session.save
      redirect_to :controller => :home
    else
-     flash[:notice] = @channel_session.errors
+     flash[:notice] = @channel_session.errors.first[1]
      puts "----------------> " + @channel_sessions.errors.to_s if @channel_sessions && @channel_sessions.errors
      render :action => 'new'  
    end  

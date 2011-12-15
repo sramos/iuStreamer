@@ -17,4 +17,10 @@ class HomeController < ApplicationController
     end
   end
 
+  def reset_pass
+    render :update do |page|
+      page.replace_html 'inicio_derecha', :partial => 'reset_pass'
+    end
+  end
+
 end

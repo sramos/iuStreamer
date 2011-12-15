@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208005329) do
+ActiveRecord::Schema.define(:version => 20111215185811) do
 
   create_table "channels", :force => true do |t|
     t.string   "name"
@@ -22,7 +22,13 @@ ActiveRecord::Schema.define(:version => 20111208005329) do
     t.integer  "views",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",            :default => false, :null => false
+    t.string   "perishable_token",  :default => "",    :null => false
   end
+
+  add_index "channels", ["email"], :name => "index_channels_on_email"
+  add_index "channels", ["name"], :name => "index_channels_on_name"
+  add_index "channels", ["perishable_token"], :name => "index_channels_on_perishable_token"
 
   create_table "videos", :force => true do |t|
     t.integer  "channel_id"

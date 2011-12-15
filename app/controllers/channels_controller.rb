@@ -51,12 +51,13 @@ class ChannelsController < ApplicationController
 
   def create  
     @channel = Channel.new(params[:channel])  
-    if @channel.save  
-      flash[:notice] = "Registration successful."  
-      redirect_to :controller => :home
-    else  
-      render :action => 'new'  
-    end  
+    if @channel.save_without_session_maintenance
+      @channel.deliver_activation_instructions!
+      flash[:notice] = "El canal se ha creado. Recibirá por mail las instrucciones para activarlo"
+      redirect_to root_url
+    else
+      render :action => :new
+    end
   end 
 
   def edit  

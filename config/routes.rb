@@ -38,8 +38,10 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "home"
   map.login 'login', :controller => 'channel_sessions', :action => 'new'  
   map.logout 'logout', :controller => 'channel_sessions', :action => 'destroy'  
+  map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
   map.resources :channel_sessions
   map.resources :channels
+  map.resources :password_resets
   map.resources :videos
 
   # Install the default routes as the lowest priority.

@@ -1,0 +1,18 @@
+<div class="caja_canal">
+  <div class="canal_titulo resaltado">Recordar Password</div>
+  <div class="form">
+    <% form_tag password_resets_path do %>
+      <br />
+      <div class="form-line right">
+        <label class="left">email: </label>
+        <div class="left"><%= text_field_tag :email %></div>
+        <%= submit_tag "Enviar por Mail" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="resaltado">Si no tienes cuenta,
+    <%= link_to_remote "regístrate aquí", :url => { :controller => :home, :action => :register }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+  </div>
+  <br />
+</div>
+
