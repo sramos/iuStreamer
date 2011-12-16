@@ -1,0 +1,24 @@
+        <div id='video_play_header' class='resaltado'>¡<%= video.channel.name.capitalize %> está en directo!</div> 
+        <div id='video_play'>Título: <%= video.title %></div>                                                                                                                
+        <% if video.channel == current_channel %>
+          <div id='video_play_name' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
+        <% else %>
+          <div id='video_play_name'><%= video.title || "Directo" %></div>
+        <% end %>
+ 
+        <%= render :partial => "videos/detalles", :locals => { :video => video } %>
+        <br /><br />
+ 
+        <script type='text/javascript'>
+          jwplayer('video_play').setup({
+            'flashplayer': '/jwplayer/player.swf',
+            'file': 'live',
+            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo/<%= video.channel.name %>',
+            'controlbar': 'bottom',
+            'width': '320',
+            'height': '250',
+            'icons': 'false',
+            'dock': 'false',
+            'autostart': 'true'
+          });
+        </script>

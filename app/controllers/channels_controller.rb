@@ -82,6 +82,26 @@ class ChannelsController < ApplicationController
    end  
  end  
 
+ # Comprueba si en el canal se ha empezado a emitir en directo 
+ def check_live
+   channel = Channel.find_by_id(params[:id])
+   video = channel.videos.find_by_live(true) if channel
+   render :update do |page|
+     # Si se esta emitiendo y la pagina no lo sabe
+     if video && params[:live] && params[:live] == "false"
+       page.replace_html 'video_live', :partial => 'videos/video_embebido_live', :locals => { :video => video }
+       page.replace_html 'video_live_status', :inline => 'true'
+     # Si ya no se esta emitiendo y la pagina no lo sabe
+     elsif video.nil? && params[:live] && params[:live] == "true"
+       page.replace_html 'video_live', :inline => "<div id='video_play_header' class='resaltado'>Ha terminado el directo del Canal</div>"
+       page.replace_html 'video_live_status', :inline => 'false'
+     # En otro caso le mantenemos el valor anterior 
+     else
+       page.replace_html 'video_live_status', :inline => (params[:live] || "false") 
+     end
+   end
+ end
+
  private
    def own_channel
      @channel = current_channel

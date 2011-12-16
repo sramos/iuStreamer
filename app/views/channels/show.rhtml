@@ -9,32 +9,15 @@
   <% end %>
   <br/>
 
-  <% if @video_live && @video_live.public%>
-        <div id='video_play_header' class='resaltado'>¡<%= @channel.name.capitalize %> está en directo!</div>
-        <div id='video_play'>Título: <%= @video_live.title %></div>
-        <% if @channel == current_channel %>
-          <div id='video_play_name' class='editable'><%= @video_live.title || "Pulsa aquí para cambiar el nombre" %></div>
-        <% else %>
-          <div id='video_play_name'><%= @video_live.title %></div>
-        <% end %>
+  <%= periodically_call_remote :url => { :action => "check_live", :id => @channel.id }, :with => "'live=' + $('video_live_status').innerHTML" %>
 
-        <%= render :partial => "videos/detalles", :locals => { :video => @video_live } %>
-        <br /><br />
+  <div id="video_live">
+    <% if @video_live && (@video_live.public || current_channel == @channel) %>
+      <%= render :partial => 'videos/video_embebido_live', :locals => { :video => @video_live } %>
+    <% end %>
+  </div>
+  <div id="video_live_status" style="display:none;"><%= (@video_live && (@video_live.public || current_channel == @channel)) ? "true" : "false" %></div>
 
-        <script type='text/javascript'>
-          jwplayer('video_play').setup({
-            'flashplayer': '/jwplayer/player.swf',
-            'file': 'live',
-            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo/<%= @channel.name %>',
-            'controlbar': 'bottom',
-            'width': '320',
-            'height': '240',
-            'icons': 'false',
-            'dock': 'false',
-            'autostart': 'true'
-          });
-        </script>
-  <% end %>
 </div>
 
 <%= render :partial => 'listado_videos' %>
