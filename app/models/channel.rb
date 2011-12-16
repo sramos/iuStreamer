@@ -8,6 +8,7 @@ class Channel < ActiveRecord::Base
   has_many :videos
 
   validates_presence_of :name, :email, :crypted_password
+  validates_format_of :name, :with => /^[A-Za-z\d_]+$/, :message => "can only be alphanumeric with no spaces"
 
   def deliver_password_reset_instructions!  
     reset_perishable_token!  

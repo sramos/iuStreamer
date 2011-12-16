@@ -1,9 +1,9 @@
 
 <div id="caja_videos" class="caja_videos">
   <div class="canal_titulo resaltado"><%= @video.title || "Sin Título" %></div>
-  <div id='video_play'>Título: <%= @video.title %></div>
+  <div id='video_vod_play'>Título: <%= @video.title %></div>
   <script type='text/javascript'>
-          jwplayer('video_play').setup({
+          jwplayer('video_vod_play').setup({
             'flashplayer': '/jwplayer/player.swf',
             'file': '<%= @video.filename %>.flv',
             'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo',
