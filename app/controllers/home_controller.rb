@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @channels = Channel.all
+    @channels = Channel.all(:conditions => {:active => true})
   end
 
   def login
