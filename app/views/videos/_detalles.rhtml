@@ -3,8 +3,8 @@
 <div class="video-details">Reproducciones: <%= video.views %> | Ahora: <%= video.viewers %> | Max.Simultaneos: <%= video.max_viewers %></div>
 <div class="video-details">Público: <%= video.public ? "Sí" : "No" %></div>
 
-<% if current_channel == video.channel %>
-  <div class="video-details">
+<div class="video-details">
+  <% if current_channel == video.channel %>
     <% if !video.live %>
       <div class="boton">
         <%= link_to_remote "Borrar", :url => { :controller => :videos, :action => :delete, :id => video.id, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
@@ -13,6 +13,40 @@
         <%= link_to_remote "Hacer " + (video.public ? "Privado" : "Público"), :url => { :controller => :videos, :action => :cambia_publico, :id => video.id, :public => !video.public, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
       </div>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
 
+  <div class="boton">
+    <%= link_to_function "Meter en tu Web" do |page|
+      page['video_enlace_' + video.id.to_s].hide
+      page['video_codigo_' + video.id.to_s].show
+    end %>
+  </div>
+  <div class="boton">
+    <%= link_to_function "Compartir Vídeo" do |page|
+      page['video_codigo_' + video.id.to_s].hide
+      page['video_enlace_' + video.id.to_s].show
+    end %>
+  </div>
+</div>
+
+<div id="video_enlace_<%= video.id %>" class="video-details" style="display:none;">
+  <textarea class="codigo right" wrap="off">
+<%= video_url(video.filename) %>
+  </textarea>
+  <div class="boton">
+    <%= link_to_function "Cerrar" do |page|
+      page['video_enlace_' + video.id.to_s].hide
+    end %>
+  </div>
+</div>
+
+<div id="video_codigo_<%= video.id %>" class="video-details" style="display:none;">
+  <textarea class="codigo right" wrap="off">
+<embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.filename %>.flv&mute=true&streamer=rtmpt%3A%2F%2F<%= ENV['RTMP_HOST'] %>%3A80%2Fdirecto"/>
+  </textarea>
+  <div class="boton">
+    <%= link_to_function "Cerrar" do |page|
+      page['video_codigo_' + video.id.to_s].hide
+    end %>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
 
   def index
+    condiciones = ""
+    condiciones = "active = true" unless current_channel && current_channel.admin
     @channels = Channel.all(:conditions => {:active => true})
   end
 

@@ -296,6 +296,16 @@ body {
   line-height: 2em;
 }
 
+.codigo {
+  clear:both;
+  width: 300px;
+  height: 50px;
+  overflow: scroll;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+
 #spinner {
   /*padding: 3em;*/
   width: 70px;

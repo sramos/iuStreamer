@@ -1,0 +1,12 @@
+  <div id='video_vod_play'>Título: <%= video.title %></div>
+  <script type='text/javascript'>
+          jwplayer('video_vod_play').setup({
+            'flashplayer': '/jwplayer/player.swf',
+            'file': '<%= video.filename %>.flv',
+            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo',
+            'controlbar': 'bottom',
+            'width': '470',
+            'height': '300',
+            'autostart': 'true'
+          });
+  </script>
