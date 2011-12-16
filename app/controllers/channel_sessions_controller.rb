@@ -6,7 +6,7 @@ class ChannelSessionsController < ApplicationController
  def create  
    @channel_session = ChannelSession.new(params[:channel_session])  
    if @channel_session.save  
-     flash[:notice] = "Successfully logged in."
+     flash[:notice] = "¡Bienvenido!"
      #@user_session.user.reset_persistence_token!
      #@user_session.save
      redirect_to :controller => :home
@@ -20,7 +20,7 @@ class ChannelSessionsController < ApplicationController
  def destroy  
    @channel_session = ChannelSession.find  
    @channel_session.destroy  
-   flash[:notice] = "Successfully logged out."  
+   flash[:notice] = "Estás desconectado del canal"  
    redirect_to :controller => :home
  end 
 
