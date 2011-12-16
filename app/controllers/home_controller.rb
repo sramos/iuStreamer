@@ -10,13 +10,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def register
-    @channel = Channel.new
-    render :update do |page|
-      page.replace_html 'inicio_derecha', :partial => 'register'
-    end
-  end
-
   def reset_pass
     render :update do |page|
       page.replace_html 'inicio_derecha', :partial => 'reset_pass'

@@ -3,7 +3,7 @@
   <div class="canal_titulo resaltado">Registro de Canal</div>
   <%= render :partial => "channels/channel" %>
   <div class="resaltado">Si ya tienes cuenta,
-    <%= link_to_remote "conéctate aquí", :url => { :controller => :home, :action => :login }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    <%= link_to "conéctate aquí", login_path %>
   </div>
   <br />
 </div>

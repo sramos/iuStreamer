@@ -30,9 +30,9 @@
 
   <div class="right">
   <% if current_channel %>  
-    Hola, <%= link_to current_channel.name, :controller => :channels, :action => current_channel.name %> | <%= link_to "Logout", logout_path %>
+    Hola, <%= link_to current_channel.name, :controller => :channels, :action => current_channel.name %> | <%= link_to "Desconectar", logout_path %>
   <% else %>  
-    <%= link_to "Register", new_channel_path %> | <%= link_to "Log in", login_path %>
+    <%= link_to "Registro", new_channel_path %> | <%= link_to "Conectarse", login_path %>
   <% end %> 
   </div>
 </div>

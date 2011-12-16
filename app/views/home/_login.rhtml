@@ -13,7 +13,7 @@
     <%= link_to_remote "¡He olvidado mi password!", :url => { :controller => :home, :action => :reset_pass }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
   </div>
   <div class="resaltado">Si no tienes cuenta,
-    <%= link_to_remote "regístrate aquí", :url => { :controller => :home, :action => :register }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    <%= link_to "regístrate aquí", :controller => :channels, :action => :new %>
   </div>
   <br />
 </div>
