@@ -2,10 +2,10 @@
   <script type='text/javascript'>
           jwplayer('video_vod_play').setup({
             'flashplayer': '/jwplayer/player.swf',
-            'file': '<%= video.filename %>.flv',
-            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo',
+            'file': '<%= video.live ? "live" : (video.filename + ".flv") %>',
+            'streamer': 'rtmp://<%= ENV['RTMP_HOST'] %>/directo<%= ("/" + video.channel.name) if video.live %>',
             'controlbar': 'bottom',
-            'width': '470',
+            'width': '490',
             'height': '300',
             'autostart': 'true'
           });

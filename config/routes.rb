@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'channel_sessions', :action => 'destroy'
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
   map.video '/video/:code', :controller => 'videos', :action => 'show'
+  map.video_live '/video/:channel/live', :controller => 'videos', :action => 'show_live'
   map.resources :channel_sessions
   map.resources :channels
   map.resources :password_resets

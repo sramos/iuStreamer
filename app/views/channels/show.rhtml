@@ -18,6 +18,10 @@
   </div>
   <div id="video_live_status" style="display:none;"><%= (@video_live && (@video_live.public || current_channel == @channel)) ? "true" : "false" %></div>
 
+  <% if current_channel == @channel %>
+    <%= render :partial => 'emitir' %>
+  <% end %>
+
 </div>
 
 <%= render :partial => 'listado_videos' %>

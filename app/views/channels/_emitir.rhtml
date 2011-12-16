@@ -1,0 +1,11 @@
+
+
+  <% if current_channel == @channel %>
+    <div class='resaltado'>¡Comienza a emitir!</div>
+    <p>Para empezar, puedes probar con aplicaciones como blah, blah, blah</p>
+    <div class="boton"><%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @channel.name %></div>
+    <div class="boton"><a href="http://www.recettes-bbq.com:5080/demos/publisher.html" target="_blank">Flash Publisher</a></div>
+    <br/>
+  <% end %>
+  <br/>
+

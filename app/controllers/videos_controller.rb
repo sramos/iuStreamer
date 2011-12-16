@@ -1,10 +1,15 @@
 class VideosController < ApplicationController
 
   def show
-    #@video = Video.find_by_id(params[:id])
-    #redirect_to :controller => :home unless @video
     @video = Video.find_by_filename(params[:code])
     redirect_to :controller => :home unless @video
+  end
+
+  def show_live
+    channel = Channel.find_by_name(params[:channel])
+    @video = Video.find_by_live(true)
+    redirect_to :controller => :home unless @video
+    render :show if @video
   end
 
   def cambia_publico

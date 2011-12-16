@@ -1,6 +1,6 @@
 
 <div class="video-details">Emitido: <%= video.created_at %></div>
-<div class="video-details">Reproducciones: <%= video.views %> | Ahora: <%= video.viewers %> | Max.Simultaneos: <%= video.max_viewers %></div>
+<div class="video-details">Reproducciones: <%= video.views + 1 %> | Ahora: <%= video.viewers + 1 %> | Max.Simultaneos: <%= video.max_viewers %></div>
 <div class="video-details">Público: <%= video.public ? "Sí" : "No" %></div>
 
 <div class="video-details">
@@ -42,7 +42,7 @@
 
 <div id="video_codigo_<%= video.id %>" class="video-details" style="display:none;">
   <textarea class="codigo right" wrap="off">
-<embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.live ? "live" : (video.filename + ".flv") %>&mute=true&streamer=rtmpt%3A%2F%2F<%= ENV['RTMP_HOST'] %>%3A80%2Fdirecto"/>
+<embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.live ? "live" : (video.filename + ".flv") %>&mute=true&streamer=rtmpt%3A%2F%2F<%= ENV['RTMP_HOST'] %>%3A80%2Fdirecto<%= ("/" + video.channel.name) if video.live %>"/>
   </textarea>
   <div class="boton">
     <%= link_to_function "Cerrar" do |page|
