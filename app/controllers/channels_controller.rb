@@ -89,12 +89,19 @@ class ChannelsController < ApplicationController
    render :update do |page|
      # Si se esta emitiendo y la pagina no lo sabe
      if video && params[:live] && params[:live] == "false"
+       # Mete el video en directo
        page.replace_html 'video_live', :partial => 'videos/video_embebido_live', :locals => { :video => video }
-       page.replace_html 'video_live_status', :inline => 'true'
+       # Cambia el valor del status por el id del video
+       page.replace_html 'video_live_status', :inline => video.id.to_s
      # Si ya no se esta emitiendo y la pagina no lo sabe
-     elsif video.nil? && params[:live] && params[:live] == "true"
-       page.replace_html 'video_live', :inline => "<div id='video_play_header' class='resaltado'>Ha terminado el directo del Canal</div>"
+     elsif video.nil? && params[:live] && params[:live] != "false"
+       # Pone un mensajito para que se sepa que ha parado
+       page.replace_html 'video_live', :inline => "<div class='resaltado'>Ha terminado el directo del Canal</div>" 
+       # Cambia el estado a false
        page.replace_html 'video_live_status', :inline => 'false'
+       # Mete el video que ha dejado de emitir en el listado de enlatados
+       video = Video.find_by_id(params[:live])
+       page.replace('nuevo_video_vod', :partial => 'videos/nuevo_video_vod', :locals => { :video => video }) if video
      # En otro caso le mantenemos el valor anterior 
      else
        page.replace_html 'video_live_status', :inline => (params[:live] || "false") 
