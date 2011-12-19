@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216095513) do
+ActiveRecord::Schema.define(:version => 20111219111527) do
 
   create_table "channels", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20111216095513) do
     t.boolean  "public",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "thumbnail"
   end
 
 end
