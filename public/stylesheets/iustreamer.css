@@ -82,8 +82,11 @@ img {
   clear:both;
   padding-top: 60px;
   padding-bottom: 50px;
-  padding-left: 50px;
-  padding-right: 50px;
+  /*padding-left: 50px;
+  padding-right: 50px;*/
+  margin-left: auto;
+  margin-right: auto;
+  width: 1030px;
   background-color:#fff;
   text-align:left;
   overflow: auto;
@@ -100,7 +103,7 @@ img {
 
 #inicio_izquierda {
   float:left;
-  width: 780px;
+  width: 650px;
 }
 
 #inicio_derecha {
@@ -131,6 +134,8 @@ img {
   padding:10px;
   margin-top: 15px;
   margin-bottom: 15px;
+  margin-left: 3px;
+  margin-right: 3px;
   box-shadow: 1px 1px 4px #333333;
   -moz-border-radius-bottomleft: 7px;
   -moz-border-radius-bottomright: 7px;
@@ -144,9 +149,9 @@ img {
 }
 
 .canal {
-  width: 350px;
+  width: 290px;
   float: left;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .canal_titulo {
@@ -181,8 +186,8 @@ img {
 
 .caja_videos {
   float: left;
-  margin-left: 20px;
-  padding-left: 10px;
+  margin-left: 10px;
+  /*padding-left: 10px;*/
   width: 640px;
 }
 
@@ -257,6 +262,18 @@ img {
 /*********************************
 *          OTROS ESTILOS         *
 *********************************/
+
+.caja_login {
+  padding:10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  box-shadow: 1px 1px 4px #333333;
+  -moz-border-radius-bottomleft: 7px;
+  -moz-border-radius-bottomright: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 4px
+  width: 230px;
+}
 
 .normal {
   float: left;
