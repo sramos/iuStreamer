@@ -9,6 +9,8 @@
   <% end %>
 </div>
 <div class="video-details">
-  <% if !video.live %>Emitido: <%= video.created_at %><% end %>
+  <% if !video.live %>
+    Duración: <%= Time.at(video.duration||0).gmtime.strftime('%R:%S') + "s" %> | Emitido: <%= video.created_at %>
+  <% end %>
 </div>
 
