@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
 
   def show
-    @video = Video.find_by_filename(params[:code])
+    @video = Video.find_by_filename params[:code]
     redirect_to :controller => :home unless @video
   end
 

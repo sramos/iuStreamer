@@ -1,5 +1,5 @@
         <div id='video_play_header' class='resaltado'>¡<%= video.channel.name.capitalize %> está en directo!</div> 
-        <div id='video_play'>Título: <%= video.title %></div>                                                                                                                
+        <div id='video_play'>Título: <%= video.title %></div>
         <% if video.channel == current_channel %>
           <div id='video_play_name' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
         <% else %>
@@ -7,8 +7,9 @@
         <% end %>
  
         <%= render :partial => "videos/detalles", :locals => { :video => video } %>
+        <%= render :partial => "videos/botones", :locals => { :video => video } %>
         <br /><br />
- 
+
         <script type='text/javascript'>
           jwplayer('video_play').setup({
             'flashplayer': '/jwplayer/player.swf',

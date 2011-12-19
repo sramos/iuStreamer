@@ -10,15 +10,4 @@
   <br/>
 </div>
 
-<div class="caja_videos">
-  <div class="canal_titulo resaltado"><%= @video.title || "Sin Título" %></div>
-  <%= render :partial => "videos/video_embebido_vod", :locals => { :video => @video } %>
-
-  <%= render :partial => "videos/detalles", :locals => { :video => @video } %>
-
-  <br />
-
-  <div id="mas_videos" class="resaltado">
-    <%= link_to "- Más Vídeos del Canal " + @video.channel.name.capitalize + " -", :controller => 'channels', :action => 'show', :id => @video.channel.name %>
-  </div>
-</div>
+<%= render :partial => "videos/ver_video", :locals => { :video => @video } %>

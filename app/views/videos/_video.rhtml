@@ -1,10 +1,10 @@
 
 <div class="video" id="video_<%= video.id %>">
-  <div class="video-thumbnail">
-    <%= link_to_remote '<img src="/images/colour-bars.png" alt="Video thumbnail" />', :url => { :controller => :videos, :action => :ver_video, :id => video.id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+  <div class="video_thumbnail">
+    <%= link_to_remote '<img src="/images/colour-bars.png" alt="Video thumbnail" class="video_thumbnail" />', :url => { :controller => :videos, :action => :ver_video, :id => video.id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
   </div>
-  <div class="video-data">
-    <div class="video-title">
+  <div class="video_data">
+    <div class="video_title">
       <div class="normal">Título:</div>
       <% if video.channel == current_channel %>
         <div id='video_title_<%= video.id %>' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
@@ -14,6 +14,9 @@
       <% end %>
     </div>
     <%= render :partial => "videos/detalles", :locals => { :video => video } %>
+  </div>
+  <div class="video_buttons">
+    <%= render :partial => "videos/botones", :locals => { :video => video } %>
   </div>
 </div>
 

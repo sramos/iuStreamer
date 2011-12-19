@@ -1,4 +1,8 @@
 
+/*********************************
+*      ELEMENTOS GENERALES       *
+*********************************/
+
 body {
   background-color: #FFFFFF;
   color: #000000;
@@ -8,6 +12,10 @@ body {
   min-width: 800px;
   text-align: center;
   height: 100%;
+}
+
+img {
+  border: none;
 }
 
 /*********************************
@@ -163,6 +171,7 @@ body {
 .avatar {
   float: left;
   padding-right: 10px;
+  width: 100px;
 }
 
 
@@ -174,44 +183,54 @@ body {
   float: left;
   margin-left: 20px;
   padding-left: 10px;
-  width: 690px;
+  width: 640px;
 }
 
 .video {
   padding-left: 15px;
   padding-right: 15px;
-  width: 660px;
-  height: 150px;
+  width: 610px;
+  height: 140px;
   clear: both;
 }
 
-.video-thumbnail {
+.video_thumbnail {
   float: left;
-  width: 200px;
+  width: 150px;
   margin-right: 10px;
   margin-left: 0px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
 
-.video-data {
+.video_data {
   float: left; 
+  width: 450px;
+  height: 85px;
 }
 
-.video-title {
-  padding-top: 10px;
+.video_buttons {
+  float: left;
+  width: 450px;
+  min-height: 30px;
+}
+
+.video_title {
+  padding-top: 5px;
   padding-bottom: 10px;
   text-align: left;
-  clear: right;
+  /* clear: right; */
+  clear: both;
   font-size: 16px;
   font-weight: bold;
   float: left;
-  height: 3em;
+  height: 1em;
   width: 450px;
-  max-height: 3em;
+  max-height: 1em;
 }
 
 .video-details {
   text-align: left;
+  height; 1em;
 }
 
 #mas_videos {
@@ -296,9 +315,15 @@ body {
   line-height: 2em;
 }
 
+.caja_codigo {
+  max-width:340px;
+  float: right;
+  margin-right: 5px;
+}
+
 .codigo {
   clear:both;
-  width: 280px;
+  width: 270px;
   height: 50px;
   overflow: scroll;
   margin-top: 5px;

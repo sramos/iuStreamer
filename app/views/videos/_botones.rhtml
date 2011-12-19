@@ -1,0 +1,58 @@
+
+  <div class="video-details">
+    <% if current_channel == video.channel %>
+      <% if !video.live %>
+        <div class="boton">
+          <%= link_to_remote "Borrar", :url => { :controller => :videos, :action => :delete, :id => video.id, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+        </div>
+      <% end %>
+      <div class="boton">
+        <%= link_to_remote "Hacer " + (video.public ? "Privado" : "Público"), :url => { :controller => :videos, :action => :cambia_publico, :id => video.id, :public => !video.public, :update => "video_" + video.id.to_s }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="video-details">
+    <div class="boton">
+      <%= link_to_function "Código" do |page|
+        page['video_enlace_' + video.id.to_s].hide
+        page['video_codigo_' + video.id.to_s].show
+      end %>
+    </div>
+    <div class="boton">
+      <%= link_to_function "Compartir" do |page|
+        page['video_codigo_' + video.id.to_s].hide
+        page['video_enlace_' + video.id.to_s].show
+      end %>
+    </div>
+    <% if !video.live %>
+      <div class="boton">
+        Descargar
+      </div>
+    <% end %>
+  </div>
+
+  <div id="video_enlace_<%= video.id %>" class="caja_codigo" style="display:none;">
+    <textarea class="codigo right" wrap="off">
+<%= video_url(video.filename) %>
+    </textarea>
+    <span class="right canal_detalles">URL:</span>
+    <div class="boton">
+      <%= link_to_function "Cerrar" do |page|
+        page['video_enlace_' + video.id.to_s].hide
+      end %>
+    </div>
+  </div>
+
+  <div id="video_codigo_<%= video.id %>" class="caja_codigo" style="display:none;">
+    <textarea class="codigo right" wrap="off">
+ <embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.live ? "live" : (video.filename + ".flv") %>&mute=true&streamer=rtmpt%3A%2F%2F<%= ENV['RTMP_HOST'] %>%3A80%2Fdirecto<%= ("/" + video.channel.name) if video.live %>"/>
+    </textarea>
+    <span class="right canal_detalles">Código:</span>
+    <div class="boton">
+      <%= link_to_function "Cerrar" do |page|
+        page['video_codigo_' + video.id.to_s].hide
+      end %>
+    </div>
+  </div>
+
