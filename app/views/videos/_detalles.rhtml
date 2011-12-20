@@ -1,12 +1,9 @@
 
 <div class="video-details">
   Reproducciones: <%= video.views %>
-  <% if video.live %>
-    | Ahora: <%= video.viewers %>
-  <% end %>
-  <% if video.live || current_channel == video.channel %>
-    | Max.Simultaneos: <%= video.max_viewers %>
-  <% end %>
+  <%= video.live ? " | Ahora: " + video.viewers.to_s : " (directo: " + video.viewers.to_s + ") %>
+  <%= " | Ahora: " + video.viewers.to_s if video.live %>
+  <%= " | Max.Simultaneos: " + video.max_viewers.to_s if video.live || current_channel == video.channel %>
 </div>
 <div class="video-details">
   <% if !video.live %>
