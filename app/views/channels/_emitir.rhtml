@@ -1,10 +1,10 @@
 
-
   <% if current_channel == @channel %>
     <div class='resaltado'>¡Comienza a emitir!</div>
     <p>Para empezar, puedes probar con aplicaciones como blah, blah, blah</p>
     <div class="boton"><%= link_to "Descargar XML", :controller => :channels, :action => :show_xml, :id => @channel.name %></div>
-    <div class="boton"><a href="http://www.recettes-bbq.com:5080/demos/publisher.html" target="_blank">Flash Publisher</a></div>
+    <div class="boton"><a href="http://www.recettes-bbq.com:5080/demos/publisher.html" target="_blank">Test</a></div>
+    <div class="boton"><%= link_to_remote "Emitir WebCam", :url => {:controller => :channels, :action => :live_player }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')"  %></div>
     <br/>
   <% end %>
   <br/>

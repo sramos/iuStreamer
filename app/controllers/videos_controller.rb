@@ -2,12 +2,14 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find_by_filename params[:code]
+    # Esto lo hacemos para que cuente el que esta pidiendo el video
+    @video.views += 1 if @video
     redirect_to :controller => :home unless @video
   end
 
   def show_live
     channel = Channel.find_by_name(params[:channel])
-    @video = Video.find_by_live(true)
+    @video = channel.video.find_by_live(true) if channel
     redirect_to :controller => :home unless @video
     render :show if @video
   end
@@ -23,8 +25,22 @@ class VideosController < ApplicationController
 
   def ver_video
     @video = Video.find_by_id(params[:id])
+    # Esto lo hacemos para que cuente el que esta pidiendo el video
+    @video.views += 1 if @video
     render :update do |page|
       page.replace 'caja_videos', :partial => 'ver_video'
+    end
+  end
+
+  def download
+    video = Video.find_by_id(params[:id], :conditions => {:live => false})
+    if video && File.exists?(ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv")
+      send_file ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv",
+             :disposition => 'attachment',
+             :type => "application/video/x-flv"
+    else
+      redirect_to channel_url(video.channel.name) if video
+      redirect_to :controller => :home unless video
     end
   end
 

@@ -1,7 +1,7 @@
 
 <div id="inicio_izquierda">
   <% @channels.each do |channel| %>
-    <div class="canal">
+    <div class="caja_pequena">
       <%= render :partial => "channels/cabecera", :locals => { :channel => channel } %>
     </div>
   <% end %>
@@ -9,7 +9,7 @@
 
 <div id="inicio_derecha">
   <% if current_channel %>
-    <div class="caja_canal left">
+    <div class="caja_grande">
       <div class="canal_titulo resaltado"><%= link_to "Tu Canal", :controller => :channels, :action => :show, :id => current_channel.name %></div>
       <br />
       <%= render :partial => "channels/cabecera", :locals => { :channel => current_channel } %>

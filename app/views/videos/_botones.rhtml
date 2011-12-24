@@ -27,7 +27,7 @@
     </div>
     <% if !video.live %>
       <div class="boton">
-        Descargar
+        <%= link_to "Descargar", :controller => :videos, :action => :download, :id => video.id %>
       </div>
     <% end %>
   </div>

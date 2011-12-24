@@ -1,13 +1,12 @@
 
 <div class="video-details">
-  Reproducciones: <%= video.views %>
-  <%= video.live ? " | Ahora: " + video.viewers.to_s : " (directo: " + video.viewers.to_s + ") %>
-  <%= " | Ahora: " + video.viewers.to_s if video.live %>
-  <%= " | Max.Simultaneos: " + video.max_viewers.to_s if video.live || current_channel == video.channel %>
-</div>
-<div class="video-details">
   <% if !video.live %>
     Duración: <%= Time.at(video.duration||0).gmtime.strftime('%R:%S') + "s" %> | Emitido: <%= video.created_at %>
   <% end %>
+</div>
+<div class="video-details">
+  <%= video.views %> reproducciones
+  <%= video.live ? "(" + video.viewers.to_s + " ahora)" : " (" + video.viewers.to_s + " en directo)" %>
+  <%= " | Max.Simultaneos: " + video.max_viewers.to_s if video.live || current_channel == video.channel %>
 </div>
 

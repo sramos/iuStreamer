@@ -1,0 +1,23 @@
+
+<% rtmp_url = ENV['RTMP_HOST'] + "/directo/" + @channel.name + "&id=" + @channel.stream_token %>
+
+<div id="caja_videos" class="caja_videos">
+  <div class="canal_titulo resaltado">¡¡¡ Emite Tu WebCam !!!</div>
+
+  <div id="video_play_wrapper">
+    <object id='publisher' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' width="640" height="350" >
+      <param name='src' value='/publisher.swf'/>
+      <param name='flashVars' value='rtmp_url=<%= rtmp_url %>'/>
+      <embed name='plublisher' src='/publisher.swf' pluginspage='http://www.adobe.com/go/getflashplayer' flashVars='rtmp_url=<%= rtmp_url %>' width="640" height="350"/>
+    </object>
+  </div>
+
+  <div class="boton"><%= link_to_function 'Comenzar Emisión', 'publisher.startPublishing()' %></div>
+  <div class="boton"><%= link_to_function 'Terminar Emisión', 'publisher.stopPublishing()' %></div>
+
+  <br />
+
+  <div id="mas_videos" class="resaltado">
+    <%= link_to_remote '- Terminar Emisión  -', :url => { :controller => :channels, :action => :listado_videos, :id => @channel.name }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+  </div>
+</div>

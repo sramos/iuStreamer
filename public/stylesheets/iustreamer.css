@@ -129,31 +129,6 @@ img {
   color: #04adda;
 }
 
-.canal, .caja_canal {
-  min-height: 100px;
-  padding:10px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 3px;
-  margin-right: 3px;
-  box-shadow: 1px 1px 4px #333333;
-  -moz-border-radius-bottomleft: 7px;
-  -moz-border-radius-bottomright: 7px;
-  -webkit-border-radius: 7px;
-  border-radius: 4px
-}
-
-.caja_canal {
-  float: left;
-  width: 350px;
-}
-
-.canal {
-  width: 290px;
-  float: left;
-  margin-right: 10px;
-}
-
 .canal_titulo {
   font-size: 20px;
   font-weight: bold;
@@ -241,7 +216,7 @@ img {
 #mas_videos {
 }
 
-#video_play_wrapper, #video_vod_play_wrapper, #video_play_header, #video_play_footer {
+#video_play_wrapper, #video_vod_play_wrapper, #video_play_header, #video_play_footer, #publisher {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
@@ -263,16 +238,25 @@ img {
 *          OTROS ESTILOS         *
 *********************************/
 
-.caja_login {
+.caja_pequena, .caja_grande {
+  min-height: 100px;
   padding:10px;
   margin-top: 15px;
   margin-bottom: 15px;
+  margin-left: 3px;
+  margin-right: 3px;
   box-shadow: 1px 1px 4px #333333;
   -moz-border-radius-bottomleft: 7px;
   -moz-border-radius-bottomright: 7px;
   -webkit-border-radius: 7px;
-  border-radius: 4px
-  width: 230px;
+  border-radius: 4px;
+  float: left;
+  width: 350px;
+}
+
+.caja_pequena {
+  width: 285px;
+  margin-right: 15px;
 }
 
 .normal {

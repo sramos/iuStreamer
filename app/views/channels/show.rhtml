@@ -1,5 +1,5 @@
 
-<div class="caja_canal">
+<div class="caja_grande">
   <%= render :partial => "cabecera", :locals => { :channel => @channel } %>
   <% if current_channel == @channel %>
     <div class="boton"><%= link_to_remote "Editar Mi Perfil", :url => {:controller => :channels, :action => :editar, :update => "edicion_canal"}, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %></div>

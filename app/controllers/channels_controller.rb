@@ -5,7 +5,8 @@ class ChannelsController < ApplicationController
   # Libreria para paginado
   require 'will_paginate'
 
-  before_filter :own_channel, :only => [:show_xml, :edit, :update]
+  before_filter :own_channel, :only => [:show_xml, :edit, :update, :live_player]
+  before_filter :reset_token_channel, :only => [:show_xml, :live_player]
   before_filter :listado_inicial_videos, :only => [:show, :listado_videos]
 
   def new  
@@ -43,8 +44,8 @@ class ChannelsController < ApplicationController
   end
 
   def show_xml
-    @channel.stream_token = Digest::MD5.hexdigest(Time.now.to_s)
-    @channel.save
+    #@channel.stream_token = Digest::MD5.hexdigest(Time.now.to_s)
+    #@channel.save
     stream = render_to_string :file=>"channels/flashmediaencoder.rhtml"
     send_data(stream, :type=>"text/xml",:filename => "webstream.xml")  
   end
@@ -69,7 +70,6 @@ class ChannelsController < ApplicationController
       render :update do |page|
         page.replace_html params[:update], :partial => 'channel'
       end
-    else
     end
   end
       
@@ -81,6 +81,16 @@ class ChannelsController < ApplicationController
      render :action => 'edit'  
    end  
  end  
+
+ def live_player 
+   if @channel
+     render :update do |page|
+       page.replace 'caja_videos', :partial => 'live_player'
+     end
+   else
+     redirect_to :controller => :home
+   end    
+ end
 
  # Comprueba si en el canal se ha empezado a emitir en directo 
  def check_live
@@ -122,6 +132,13 @@ class ChannelsController < ApplicationController
       condiciones = "NOT live" + ( current_channel != @channel ? " AND public" : "" )
       @videos = @channel.videos.paginate( :order => 'created_at DESC', :conditions => condiciones, :page => 1, :per_page => 3 )
     end
+   end
+
+   def reset_token_channel
+     if @channel
+       @channel.stream_token = Digest::MD5.hexdigest(Time.now.to_s)
+       @channel.save
+     end
    end
 
 end
