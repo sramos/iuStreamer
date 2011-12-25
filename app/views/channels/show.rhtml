@@ -13,6 +13,8 @@
   <div id="video_live">
     <% if @video_live && (@video_live.public || current_channel == @channel) %>
       <%= render :partial => 'videos/video_embebido_live', :locals => { :video => @video_live } %>
+    <% else %>
+      <div id="spinner_live" class="spinner" style="display:none;"></div>
     <% end %>
   </div>
   <div id="video_live_status" style="display:none;"><%= (@video_live && (@video_live.public || current_channel == @channel)) ? "true" : "false" %></div>

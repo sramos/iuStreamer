@@ -332,14 +332,21 @@ img {
   font-size: 10px;
 }
 
-#spinner {
+#spinner, .spinner {
   /*padding: 3em;*/
   width: 70px;
   height: 70px;
   background: transparent url(/images/loading.gif) 100% 0 no-repeat;
-  position: fixed;
-  top: 50%;
-  left: 200px;
   z-index: 999;
 }
 
+#spinner {
+  position: fixed;
+  top: 50%;
+  left: 200px;
+}
+
+.spinner {
+  margin-left: auto;
+  margin-right: auto;
+}

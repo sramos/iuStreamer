@@ -106,7 +106,7 @@ class ChannelsController < ApplicationController
      # Si ya no se esta emitiendo y la pagina no lo sabe
      elsif video.nil? && params[:live] && params[:live] != "false"
        # Pone un mensajito para que se sepa que ha parado
-       page.replace_html 'video_live', :inline => "<div class='resaltado'>Ha terminado el directo del Canal</div>" 
+       page.replace_html 'video_live', :inline => '<div id="spinner_live" class="spinner" style="display:none;"></div>'
        # Cambia el estado a false
        page.replace_html 'video_live_status', :inline => 'false'
        # Mete el video que ha dejado de emitir en el listado de enlatados
