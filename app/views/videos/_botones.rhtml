@@ -25,6 +25,12 @@
         page['video_enlace_' + video.id.to_s].show
       end %>
     </div>
+    <div class="boton_imagen">
+      <%# link_to "<img src='/images/twitter_mini.png' />", :controller => :videos, :action => :download, :id => video.id %>
+    </div>
+    <div class="boton_imagen">
+      <%# link_to "<img src='/images/facebook_mini.png' />", :controller => :videos, :action => :download, :id => video.id %>
+    </div>
     <% if !video.live %>
       <div class="boton">
         <%= link_to "Descargar", :controller => :videos, :action => :download, :id => video.id %>
@@ -33,25 +39,25 @@
   </div>
 
   <div id="video_enlace_<%= video.id %>" class="caja_codigo" style="display:none;">
-    <textarea class="codigo right" wrap="off">
+    <textarea class="codigo right" wrap="off" readonly>
 <%= video_url(video.filename) %>
     </textarea>
     <span class="right canal_detalles">URL:</span>
     <div class="boton">
       <%= link_to_function "Cerrar" do |page|
-        page['video_enlace_' + video.id.to_s].hide
+        page['video_enlace_' + video.id.to_s].slideUp :duration => 1.0
       end %>
     </div>
   </div>
 
   <div id="video_codigo_<%= video.id %>" class="caja_codigo" style="display:none;">
-    <textarea class="codigo right" wrap="off">
+    <textarea class="codigo right" wrap="off" readonly>
  <embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.live ? "live" : (video.filename + ".flv") %>&mute=true&streamer=rtmpt%3A%2F%2F<%= ENV['RTMP_HOST'] %>%3A80%2FdiuStreamer<%= ("/" + video.channel.name) if video.live %>"/>
     </textarea>
     <span class="right canal_detalles">Código:</span>
     <div class="boton">
       <%= link_to_function "Cerrar" do |page|
-        page['video_codigo_' + video.id.to_s].hide
+        page['video_codigo_' + video.id.to_s].slideUp :duration => 1.0
       end %>
     </div>
   </div>

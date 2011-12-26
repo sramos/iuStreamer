@@ -281,14 +281,17 @@ img {
   margin-top: 15px; 
 }
 
-.boton {
+.boton, .boton_imagen {
   float: right;
-  padding-left: 5px;
-  padding-right: 5px;
   margin-left: 5px;
   margin-top: 10px;
   background-color: #04adda;
   color: #fff;
+}
+
+.boton {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .right {
@@ -330,6 +333,7 @@ img {
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 10px;
+  background-color: #fff;
 }
 
 #spinner, .spinner {

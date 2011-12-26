@@ -75,7 +75,7 @@ class ChannelsController < ApplicationController
       
   def update  
     if @channel.update_attributes(params[:channel])  
-      flash[:notice] = "Successfully updated profile."  
+      flash[:notice] = "Perfil Actualizado"  
       redirect_to :controller => :home
    else  
      render :action => 'edit'  
