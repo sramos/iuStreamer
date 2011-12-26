@@ -41,7 +41,7 @@
         </encode>
         <output>
                 <rtmp>
-                        <url>rtmp://<%= ENV['RTMP_HOST'] %>/directo/<%= @channel.name %>?id=<%= @channel.stream_token %></url>
+                        <url>rtmp://<%= ENV['RTMP_HOST'] %>/iuStreamer/<%= @channel.name %>?id=<%= @channel.stream_token %></url>
                         <backup_url></backup_url>
                         <stream>live</stream>
                 </rtmp>
