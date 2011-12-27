@@ -6,10 +6,10 @@
 
   <br/>
 
-  <object id='iuCaster' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' width="640" height="285" >
+  <object id='iuCaster' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' width="640" height="260" >
     <param name='src' value='/iuCaster.swf'/>
     <param name='flashVars' value='rtmp_url=<%= rtmp_url %>'/>
-    <embed name='iuCaster' src='/iuCaster.swf' pluginspage='http://www.adobe.com/go/getflashplayer' flashVars='rtmp_url=<%= rtmp_url %>' width="640" height="285"/>
+    <embed name='iuCaster' src='/iuCaster.swf' pluginspage='http://www.adobe.com/go/getflashplayer' flashVars='rtmp_url=<%= rtmp_url %>' width="640" height="260"/>
   </object>
 
   <div id="publish_stop" class="boton" style="display:none;"><%= link_to_function 'Terminar Emisión', 'Element.hide("publish_stop"); iuCaster.stopPublishing(); Element.show("publish_start");' %></div>

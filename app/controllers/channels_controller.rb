@@ -114,6 +114,9 @@ class ChannelsController < ApplicationController
        page.replace('nuevo_video_vod', :partial => 'videos/nuevo_video_vod', :locals => { :video => video }) if video
      # En otro caso le mantenemos el valor anterior 
      else
+       if params[:live] != "false"
+         page.replace_html 'video_details', :partial => 'videos/detalles', :locals => { :video => video }
+       end
        page.replace_html 'video_live_status', :inline => (params[:live] || "false") 
      end
    end
