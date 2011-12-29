@@ -7,6 +7,6 @@
 <div class="video-details">
   <%= video.views %> reproducciones
   <%= video.live ? "(" + video.viewers.to_s + " ahora)" : " (" + video.viewers.to_s + " en directo)" %>
-  <%= " | Max.Simultaneos: " + video.max_viewers.to_s if video.live || current_channel == video.channel %>
+  <%= " | Max.: " + video.max_viewers.to_s if video.live || current_channel == video.channel %>
 </div>
 
