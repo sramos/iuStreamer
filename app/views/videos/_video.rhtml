@@ -1,7 +1,8 @@
 
 <div class="video" id="video_<%= video.id %>">
   <div class="video_thumbnail">
-    <%= link_to_remote '<img src="/images/colour-bars.png" alt="Video thumbnail" class="video_thumbnail" />', :url => { :controller => :videos, :action => :ver_video, :id => video.id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    <%#= link_to_remote '<img src="/images/colour-bars.png" alt="Video thumbnail" class="video_thumbnail" />', :url => { :controller => :videos, :action => :ver_video, :id => video.id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    <%= link_to_remote '<img src="' + url_for(:controller => :videos, :action => :thumbnail, :id => video.id) + '" alt="Video thumbnail" class="video_thumbnail" />', :url => { :controller => :videos, :action => :ver_video, :id => video.id }, :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
   </div>
   <div class="video_data">
     <div class="video_title">

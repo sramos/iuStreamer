@@ -44,6 +44,19 @@ class VideosController < ApplicationController
     end
   end
 
+  def thumbnail
+    video = Video.find_by_id(params[:id])
+    if video && File.exists?(ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv.png")
+      send_file ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv.png",
+             :disposition => 'attachment',
+             :type => "image/png"
+    else
+      send_file Rails.root.join("public","images","colour-bars.png"),
+             :disposition => 'attachment',
+             :type => "image/png"
+    end
+  end
+
   def delete
     video = Video.find_by_id(params[:id])
     video.delete
