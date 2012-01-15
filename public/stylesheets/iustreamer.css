@@ -92,15 +92,6 @@ img {
   overflow: auto;
 }
 
-#cuerpo a, #cuerpo a:link, #cuerpo a:visited {
-  color: #eee;
-  text-decoration:none;
-}
-
-#cuerpo a:hover {
-  color: #000;
-}
-
 #inicio_izquierda {
   float:left;
   width: 650px;
@@ -120,15 +111,6 @@ img {
   padding-bottom: 30px;
 }
 
-#cabecera_canal a, #cabecera_canal a:link, #cabecera_canal a:visited {
-  color: #000;
-  text-decoration:none;
-}
-
-#cabecera_canal a:hover {
-  color: #04adda;
-}
-
 .canal_titulo {
   font-size: 20px;
   font-weight: bold;
@@ -136,10 +118,19 @@ img {
   padding-bottom: 5px;
 }
 
+.canal_titulo a, .canal_titulo a:link, .canal_titulo a:visited {
+  color: #000;
+  text-decoration:none;
+}
+
+.canal_titulo a:hover {
+  color: #04adda;
+}
+
 .canal_descripcion {
-  height: 3em;
-  max-height: 3em;
-  overflow: auto;
+  height: 45px;
+  max-width: 240px;
+  overflow: hidden;
 }
 
 .canal_detalles {
@@ -281,6 +272,15 @@ img {
   margin-top: 15px; 
 }
 
+.resaltado a, .resaltado a:link, .resaltado a:visited {
+  color: #eee;
+  text-decoration:none;
+}
+
+.resaltado a:hover {
+  color: #000;
+}
+
 .boton, .boton_imagen {
   float: right;
   margin-left: 5px;
@@ -292,6 +292,15 @@ img {
 .boton {
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.boton a, .boton a:link, .boton a:visited {
+  color: #eee;
+  text-decoration:none;
+}
+
+.boton a:hover {
+  color: #000;
 }
 
 .right {
@@ -317,6 +326,12 @@ img {
   clear: both;
   height: 2em;
   line-height: 2em;
+}
+
+.form-field {
+  padding: 0px;
+  border-width: 1px;
+  max-width: 240px; 
 }
 
 .caja_codigo {

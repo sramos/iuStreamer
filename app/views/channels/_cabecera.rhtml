@@ -2,7 +2,18 @@
 <div id="cabecera_canal">
   <%= link_to image_tag("http://www.gravatar.com/avatar.php?s=100&gravatar_id=#{Digest::MD5::hexdigest(channel.email)}", :alt => 'Avatar', :class => 'avatar'), :controller => :channels, :action => channel.name %>
   <div class="canal_titulo"><%= link_to("Canal " + channel.name.capitalize, :controller => :channels, :action => channel.name) %></div>
-  <div id="channel_description_<%= channel.id %>" class="canal_descripcion<%= current_channel == channel ? " editable" : "" %>"><%= channel.description %></div>
+  <div id="channel_description_<%= channel.id %>">
+    <%= render :partial => "channels/description", :locals => { :channel => channel } %>
+  </div>
   <div class="canal_detalles"><%= channel.videos.count %> vídeos emitidos&nbsp;|&nbsp;<%= channel.views %> visitas</div>
 </div>
 
+<!-- Permitimos la edicion solo si es nuestro -->
+<% if current_channel == channel %>
+  <script>
+    Event.observe('channel_description_<%= channel.id %>', 'click', function() {
+      $('channel_description_<%= channel.id %>_label').hide();
+      $('channel_description_<%= channel.id %>_edit').show();
+    });
+  </script>
+<% end %>

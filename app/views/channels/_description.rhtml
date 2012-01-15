@@ -1,0 +1,13 @@
+
+ <div id="channel_description_<%= channel.id %>_label" class="canal_descripcion<%= current_channel == channel ? " editable" : "" %>"><%= channel.description %></div>
+ <% if current_channel == channel %>
+   <div id="channel_description_<%= channel.id %>_edit" class="canal_descripcion" style="display:none;">
+     <%= text_field("channel", "description", {:class => "form-field"}) %>
+     <div class="boton" style="margin-top:2px;">
+       <%= link_to_remote "Guardar", :url => { :controller => :channels, :action => :update_description, :id => channel.id, :update => "channel_description_" + channel.id.to_s },
+             :with => "'description='+encodeURIComponent($F('channel_description'))",
+             :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+     </div>
+   </div>
+ <% end %>
+

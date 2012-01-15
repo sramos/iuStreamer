@@ -4,8 +4,8 @@
   <div class="form">
     <% form_for ChannelSession.new do |form| %>  
       <%= form.error_messages %><br />
-      <div class="form-line right"><%= form.label :name, "Canal: ", :class => "left" %> <%= form.text_field :name, :class => "left" %></div>
-      <div class="form-line right"><%= form.label :password, "Password: ", :class => "left" %> <%= form.password_field :password, :class => "left" %></div>
+      <div class="form-line right"><%= form.label :name, "Canal:&nbsp;", :class => "left" %><%= form.text_field :name, :class => "form-field left" %></div>
+      <div class="form-line right"><%= form.label :password, "Password:&nbsp;", :class => "left" %><%= form.password_field :password, :class => "form-field left" %></div>
       <div class="form-line right"><%= form.submit "Conectar", :class => "right" %></div>
     <% end %>
   </div>

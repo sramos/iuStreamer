@@ -5,7 +5,7 @@ class ChannelsController < ApplicationController
   # Libreria para paginado
   require 'will_paginate'
 
-  before_filter :own_channel, :only => [:show_xml, :edit, :update, :live_player]
+  before_filter :own_channel, :only => [:show_xml, :edit, :update, :live_player, :update_description]
   before_filter :reset_token_channel, :only => [:show_xml, :live_player]
   before_filter :listado_inicial_videos, :only => [:show, :listado_videos]
 
@@ -80,47 +80,57 @@ class ChannelsController < ApplicationController
    else  
      render :action => 'edit'  
    end  
- end  
+  end  
+  
+  def update_description
+    if params[:description] && @channel == Channel.find_by_id(params[:id])
+      @channel.description = params[:description]
+      @channel.save
+      render :update do |page|
+        page.replace_html "channel_description_" + @channel.id.to_s, :partial => 'description', :locals => {:channel => @channel}
+      end
+    end
+  end
 
- def live_player 
-   if @channel
-     render :update do |page|
-       page.replace 'caja_videos', :partial => 'live_player'
-     end
-   else
-     redirect_to :controller => :home
-   end    
- end
+  def live_player 
+    if @channel
+      render :update do |page|
+        page.replace 'caja_videos', :partial => 'live_player'
+      end
+    else
+      redirect_to :controller => :home
+    end    
+  end
 
- # Comprueba si en el canal se ha empezado a emitir en directo 
- def check_live
-   channel = Channel.find_by_id(params[:id])
-   video = channel.videos.find_by_live(true) if channel
-   render :update do |page|
-     # Si se esta emitiendo y la pagina no lo sabe
-     if video && params[:live] && params[:live] == "false"
-       # Mete el video en directo
-       page.replace_html 'video_live', :partial => 'videos/video_embebido_live', :locals => { :video => video }
-       # Cambia el valor del status por el id del video
-       page.replace_html 'video_live_status', :inline => video.id.to_s
-     # Si ya no se esta emitiendo y la pagina no lo sabe
-     elsif video.nil? && params[:live] && params[:live] != "false"
-       # Pone un mensajito para que se sepa que ha parado
-       page.replace_html 'video_live', :inline => '<div id="spinner_live" class="spinner" style="display:none;"></div>'
-       # Cambia el estado a false
-       page.replace_html 'video_live_status', :inline => 'false'
-       # Mete el video que ha dejado de emitir en el listado de enlatados
-       video = Video.find_by_id(params[:live])
-       page.replace('nuevo_video_vod', :partial => 'videos/nuevo_video_vod', :locals => { :video => video }) if video
-     # En otro caso le mantenemos el valor anterior 
-     else
-       if params[:live] != "false"
-         page.replace_html 'video_details', :partial => 'videos/detalles', :locals => { :video => video }
-       end
-       page.replace_html 'video_live_status', :inline => (params[:live] || "false") 
-     end
-   end
- end
+  # Comprueba si en el canal se ha empezado a emitir en directo 
+  def check_live
+    channel = Channel.find_by_id(params[:id])
+    video = channel.videos.find_by_live(true) if channel
+    render :update do |page|
+      # Si se esta emitiendo y la pagina no lo sabe
+      if video && params[:live] && params[:live] == "false"
+        # Mete el video en directo
+        page.replace_html 'video_live', :partial => 'videos/video_embebido_live', :locals => { :video => video }
+        # Cambia el valor del status por el id del video
+        page.replace_html 'video_live_status', :inline => video.id.to_s
+      # Si ya no se esta emitiendo y la pagina no lo sabe
+      elsif video.nil? && params[:live] && params[:live] != "false"
+        # Pone un mensajito para que se sepa que ha parado
+        page.replace_html 'video_live', :inline => '<div id="spinner_live" class="spinner" style="display:none;"></div>'
+        # Cambia el estado a false
+        page.replace_html 'video_live_status', :inline => 'false'
+        # Mete el video que ha dejado de emitir en el listado de enlatados
+        video = Video.find_by_id(params[:live])
+        page.replace('nuevo_video_vod', :partial => 'videos/nuevo_video_vod', :locals => { :video => video }) if video
+      # En otro caso le mantenemos el valor anterior 
+      else
+        if params[:live] != "false"
+          page.replace_html 'video_details', :partial => 'videos/detalles', :locals => { :video => video }
+        end
+        page.replace_html 'video_live_status', :inline => (params[:live] || "false") 
+      end
+    end
+  end
 
  private
    def own_channel
