@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
 
+  before_filter :own_video, :only => [:cambia_publico, :update_title, :delete]
+
   def show
     @video = Video.find_by_filename params[:code]
     # Esto lo hacemos para que cuente el que esta pidiendo el video
@@ -15,11 +17,20 @@ class VideosController < ApplicationController
   end
 
   def cambia_publico
-    video = Video.find_by_id(params[:id])
-    video.public = params[:public]
-    video.save
+    @video.public = params[:public]
+    @video.save
     render :update do |page|
-      page.replace params[:update], :partial => 'video', :locals => {:video => video}
+      page.replace params[:update], :partial => 'video', :locals => {:video => @video}
+    end
+  end
+
+  def update_title
+    if params[:title]
+      @video.title = params[:title] == "" ? nil : params[:title]
+      @video.save
+      render :update do |page|
+        page.replace_html "video_title_" + @video.id.to_s, :partial => 'title', :locals => {:video => @video}
+      end
     end
   end
 
@@ -34,7 +45,7 @@ class VideosController < ApplicationController
 
   def download
     video = Video.find_by_id(params[:id], :conditions => {:live => false})
-    if video && File.exists?(ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv")
+    if video && (video.public || video.channel_id == current_channel.id) && File.exists?(ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv")
       send_file ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv",
              :disposition => 'attachment',
              :type => "application/video/x-flv"
@@ -58,15 +69,21 @@ class VideosController < ApplicationController
   end
 
   def delete
-    video = Video.find_by_id(params[:id])
-    video.delete
+    @video.delete
     # Borra fisicamente el video
-    Dir.glob(File.join(ENV['VIDEO_BASE_PATH'] + "/" + video.filename + "*")).each do |file|
+    Dir.glob(File.join(ENV['VIDEO_BASE_PATH'] + "/" + @video.filename + "*")).each do |file|
       File.delete(file)
-    end if File.exists?( ENV['VIDEO_BASE_PATH'] + "/" + video.filename + ".flv" )
+    end if File.exists?( ENV['VIDEO_BASE_PATH'] + "/" + @video.filename + ".flv" )
     render :update do |page|
       page.replace params[:update], :inline => ''
-    end     
+    end
   end
 
+ private
+   def own_video
+     @video = Video.find_by_id(params[:id])
+     render :update do |page|
+       page.replace_html 'mensaje_error', :inline => "ACCION NO PERMITIDA!!!"
+     end unless @video && @video.channel_id == current_channel.id
+   end
 end

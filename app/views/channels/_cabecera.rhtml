@@ -8,7 +8,7 @@
   <div class="canal_detalles"><%= channel.videos.count %> vídeos emitidos&nbsp;|&nbsp;<%= channel.views %> visitas</div>
 </div>
 
-<!-- Permitimos la edicion solo si es nuestro -->
+<!-- Permitimos la edicion de la descripcion solo si es nuestro -->
 <% if current_channel == channel %>
   <script>
     Event.observe('channel_description_<%= channel.id %>', 'click', function() {

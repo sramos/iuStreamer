@@ -7,12 +7,13 @@
   <div class="video_data">
     <div class="video_title">
       <div class="normal">Título:</div>
-      <% if video.channel == current_channel %>
-        <div id='video_title_<%= video.id %>' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
-        <div id="video_edit_title_<%= video.id %>" class="editable" style="display:none;"><%= video.title %></div>
-      <% else %>
-        <div id='video_title_<%= video.id %>'><%= video.title || "Sin título" %></div>
-      <% end %>
+      <div id="video_title_<%= video.id %>">
+        <% if current_channel == video.channel %>
+          <%= render :partial => "videos/title", :locals => { :video => video } %>
+        <% else %>
+          <div id='video_title_<%= video.id %>_label'><%= video.title || "Sin título" %></div>
+        <% end %>
+      </div>
     </div>
     <%= render :partial => "videos/detalles", :locals => { :video => video } %>
   </div>
@@ -21,3 +22,12 @@
   </div>
 </div>
 
+<!-- Permitimos la edicion del titulo solo si es nuestro -->
+<% if current_channel == video.channel %>
+  <script>
+    Event.observe('video_title_<%= video.id %>', 'click', function() {
+      $('video_title_<%= video.id %>_label').hide();
+      $('video_title_<%= video.id %>_edit').show();
+    });
+  </script>
+<% end %>

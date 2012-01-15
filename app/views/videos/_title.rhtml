@@ -1,0 +1,11 @@
+
+  <div id='video_title_<%= video.id %>_label' class='editable'><%= video.title || "Pulsa aquí para cambiar el nombre" %></div>
+  <div id="video_title_<%= video.id %>_edit" style="display:none;">
+    <%= text_field("video_" + video.id.to_s, "title", :value => video.title, :class => "form-field") %>
+    <div class="boton" style="margin-top:2px;">
+      <%= link_to_remote "Guardar", :url => { :controller => :videos, :action => :update_title, :id => video.id, :update => "video_title_" + video.id.to_s },
+           :with => "'title='+encodeURIComponent($F('video_" + video.id.to_s + "_title'))",
+           :loading => "Element.show('spinner')", :complete => "Element.hide('spinner')" %>
+    </div>
+  </div>
+
