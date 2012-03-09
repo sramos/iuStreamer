@@ -52,7 +52,7 @@
 
   <div id="video_codigo_<%= video.id %>" class="caja_codigo" style="display:none;">
     <textarea class="codigo right" wrap="off" readonly>
- <embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.live ? "live" : (video.filename + ".flv") %>&mute=true&streamer=rtmpt%3A%2F%2F<%= ENV['RTMP_HOST'] %>%3A80%2FdiuStreamer<%= ("/" + video.channel.name) if video.live %>"/>
+ <embed src='http://<%= ENV['RTMP_HOST'] %>/jwplayer/player.swf' height='300' width='470' allowscriptaccess='always' allowfullscreen='true' flashvars="&autostart=false&bandwidth=256&file=<%= video.live ? "live" : (video.filename + ".flv") %>&mute=true&streamer=rtmp://<%= ENV['RTMP_HOST'] %>:1935/iuStreamer<%= ("/" + video.channel.name + "/") if video.live %>"/>
     </textarea>
     <span class="right canal_detalles">Código:</span>
     <div class="boton">
